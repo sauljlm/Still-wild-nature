@@ -1,0 +1,86 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import MistBackground from "@/components/MistBackground.astro";
+---
+
+<Layout>
+  <MistBackground />
+  <section class="banner-video">
+    <div class="bg-video">
+      <video autoplay muted loop preload="none" >
+        <source src="/videos/forest.mp4" type="video/mp4" />
+        Tu navegador no soporta el elemento de video.
+      </video>
+    </div>
+  </section>
+
+  <div class="relative z-2 flex justify-center">
+    <div class="w-[60%]">
+      <section class="mt-30">
+        <h2>Sobre nosotros</h2>
+      </section>
+    
+      <section>
+        <h2>Tours</h2>
+      </section>
+    
+      <section>
+        <h2>Gallería</h2>
+      </section>
+    
+      <section>
+        <h2>Contacto</h2>
+      </section>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .bg-video {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 1;           
+  }
+  .bg-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap"
+  import { ScrollTrigger } from "gsap/ScrollTrigger"
+  import { SplitText } from "gsap/SplitText"
+
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(SplitText);
+
+  const tl = gsap.timeline({
+    ease: "power2.out",
+    scrollTrigger: {
+      scrub: 1,
+    },
+  })
+
+  tl.to(
+      "#logo-mask",
+      {
+        maskSize: "clamp(20vh, 25%, 30vh)",
+      },
+      0.15
+    )
+    .to(
+      "#hero-key",
+      {
+        opacity: 0,
+        duration: 0.2,
+      },
+      0.4
+    )
+</script>
