@@ -60,27 +60,4 @@ import MistBackground from "@/components/MistBackground.astro";
 
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(SplitText);
-
-  const tl = gsap.timeline({
-    ease: "power2.out",
-    scrollTrigger: {
-      scrub: 1,
-    },
-  })
-
-  tl.to(
-      "#logo-mask",
-      {
-        maskSize: "clamp(20vh, 25%, 30vh)",
-      },
-      0.15
-    )
-    .to(
-      "#hero-key",
-      {
-        opacity: 0,
-        duration: 0.2,
-      },
-      0.4
-    )
 </script>

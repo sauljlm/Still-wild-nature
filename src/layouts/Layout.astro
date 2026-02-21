@@ -8,7 +8,7 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Landing GTA VI by @midudev</title>
+    <title>Still wild nature</title>
   </head>
   <body>
     <slot />
@@ -22,9 +22,6 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
   @import "tailwindcss";
 
   @theme {
-    --font-sans: "GTA", system-ui, sans-serif;
-    --font-narrow: "GTANarrow", system-ui, sans-serif;
-
     --animate-bounce-pulse: bounce-pulse 2s ease-in-out infinite;
   }
 
@@ -51,43 +48,11 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
   html,
   body {
     background: #111;
-    height: 300vh;
+    min-height: 300vh;
     overflow-x: hidden;
-    overscroll-behavior: none;
+    overscroll-behavior-y: auto;
     color: white;
     margin: 0;
     width: 100%;
-  }
-
-  @font-face {
-    font-family: GTA;
-    src: url("/fonts/gta-regular.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: GTA;
-    src: url("/fonts/gta-bold.woff") format("woff");
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: GTA;
-    src: url("/fonts/gta-semibold.woff") format("woff");
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: GTANarrow;
-    src: url("/fonts/gta-narrow.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
   }
 </style>
