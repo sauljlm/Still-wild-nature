@@ -1,0 +1,123 @@
+---
+import Button from "./Button.astro";
+
+const { lang = "es" } = Astro.props;
+
+const isEnglish = lang === "en";
+const basePath = isEnglish ? "/en" : "/";
+
+const navigation = isEnglish
+  ? [
+      { title: "Tours", path: "/en/#tours" },
+      { title: "Our Services", path: "/en/#nuestros-servicios" },
+      { title: "About Us", path: "/en/#sobre-nosotros" },
+      { title: "Frequently asked questions", path: "/en/#preguntas-frecuentes" },
+      { title: "Contact", path: "/en/contact" },
+    ]
+  : [
+      { title: "Tours", path: "/#tours" },
+      { title: "Nuestros Servicios", path: "/#nuestros-servicios" },
+      { title: "Sobre Nosotros", path: "/#sobre-nosotros" },
+      { title: "Preguntas frecuentes", path: "/#preguntas-frecuentes" },
+      { title: "Contacto", path: "/contact" },
+    ];
+
+const contactUrl = isEnglish
+  ? "https://wa.me/50600000000?text=Hello"
+  : "https://wa.me/50600000000?text=Hola";
+---
+
+<header class="fixed top-0 left-0 w-full h-22 bg-transparent z-50 flex justify-center">
+  <div class="w-full max-w px-6 md:max-w-5xl xl:max-w-7xl flex items-center justify-between relative">
+
+    <!-- Logo -->
+    <a href={basePath} class="absolute">
+      <img class="w-[60px] rounded-full" src="/images/still-wild-nature.jpg" alt="Logo" />
+    </a>
+
+    <!-- Hamburger -->
+    <button
+      id="menu-btn"
+      class="ml-auto lg:hidden flex flex-col gap-1 z-2 md:z-1"
+      aria-label="Toggle Menu"
+    >
+      <span class="line line-1 block h-0.5 w-6 bg-white transition-all duration-300"></span>
+      <span class="line line-2 block h-0.5 w-6 bg-white transition-all duration-300"></span>
+      <span class="line line-3 block h-0.5 w-6 bg-white transition-all duration-300"></span>
+    </button>
+
+    <!-- Nav -->
+    <nav
+      id="mobile-menu"
+      class="absolute lg:static top-0 left-full w-full
+             bg-[#414a47] lg:bg-transparent
+             px-6 lg:px-0 h-screen lg:h-16
+             flex flex-col lg:flex-row
+             justify-between items-center
+             transition-all duration-300"
+    >
+      <ul class="w-full flex ml-auto mr-auto flex-col items-center mt-20 md:mt-0 py-10 h-1/2 justify-between lg:flex-row lg:justify-between lg:w-8/12 xl:w-6/12 lg:py-0">
+        {navigation.map((item) => (
+          <li>
+            <a
+              href={item.path}
+              class="border-b-4 border-transparent p-4 md:p-0 rounded-lg md:rounded-none active:text-black md:active:text-white active:bg-white md:active:bg-transparent md:hover:border-white transition text-xl md:text-base transition-all duration-300 ease-in-out"
+            >
+              {item.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="flex gap-2">
+        <!-- Language Switch -->
+        <a
+          href={isEnglish ? "/" : "/en"}
+          class="flex items-center gap-2 text-white font-medium hover:bg-[#323232] px-3 py-2 rounded-md transition-all duration-300"
+          aria-label={lang === "es" ? "Switch to English" : "Cambiar a Español"}
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-globe w-5 h-5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                <path d="M2 12h20"></path>
+            </svg>
+          <span class="text-lg">{isEnglish ? "ES" : "EN"}</span>
+        </a>
+
+        <!-- WhatsApp Button -->
+        <Button variant="primary">
+          <a href={contactUrl} target="_blank">
+            {isEnglish ? "Contact us" : "Contáctanos"}
+          </a>
+        </Button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Script for mobile menu -->
+<script>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("mobile-menu");
+
+  const line1 = btn?.querySelector(".line-1");
+  const line2 = btn?.querySelector(".line-2");
+  const line3 = btn?.querySelector(".line-3");
+
+  btn?.addEventListener("click", () => {
+    line1.classList.toggle("rotate-45");
+    line1.classList.toggle("translate-y-1.5");
+
+    line2.classList.toggle("opacity-0");
+
+    line3.classList.toggle("-rotate-45");
+    line3.classList.toggle("-translate-y-1.5");
+    if (menu.classList.contains("left-full")) {
+      menu.classList.remove("left-full");
+      menu.classList.add("left-0");
+    } else {
+      menu.classList.remove("left-0");
+      menu.classList.add("left-full");
+    }
+  });
+</script>

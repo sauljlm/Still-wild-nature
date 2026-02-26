@@ -1,21 +1,31 @@
 ---
 import Layout from "@/layouts/Layout.astro"
 import MistBackground from "@/components/MistBackground.astro";
+import KeepScrolling from "@/assets/keep-scrolling.svg"
 ---
 
 <Layout>
   <MistBackground />
-  <section class="banner-video">
+  <section class="banner-video relative">
     <div class="bg-video">
       <video autoplay muted loop preload="none" >
         <source src="/videos/forest.mp4" type="video/mp4" />
         Tu navegador no soporta el elemento de video.
       </video>
     </div>
+    <div class="absolute top-0 w-full h-full z-2 flex flex-col justify-center items-center">
+      <div class="w-3/4">
+        <h1 class="text-6xl text-bold">Still Wild Nature</h1>
+        <h2 class="text-xl">Night Walk Experience in Monteverde</h2>
+      </div>
+    </div>
+    <KeepScrolling
+      class="fixed bottom-3 right-0 left-0 mx-auto text-white z-2 drop-shadow-2xl animate-bounce-pulse"
+    />
   </section>
 
   <div class="relative z-2 flex justify-center">
-    <div class="w-[60%]">
+    <div class="w-3/4">
       <section class="mt-30">
         <h2>Sobre nosotros</h2>
       </section>
@@ -50,6 +60,13 @@ import MistBackground from "@/components/MistBackground.astro";
     height: 100%;
     object-fit: cover;
     display: block;
+  }
+  .bg-video::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
   }
 </style>
 

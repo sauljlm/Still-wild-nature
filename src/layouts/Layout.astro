@@ -1,5 +1,5 @@
 ---
-import KeepScrolling from "@/assets/keep-scrolling.svg"
+import Nav from "@/components/Nav.astro";
 ---
 
 <!doctype html>
@@ -11,10 +11,8 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
     <title>Still wild nature</title>
   </head>
   <body>
+    <Nav lang="en" />
     <slot />
-    <KeepScrolling
-      class="fixed bottom-3 right-0 left-0 mx-auto text-white z-2 drop-shadow-2xl animate-bounce-pulse"
-    />
   </body>
 </html>
 
