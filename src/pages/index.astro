@@ -1,11 +1,12 @@
 ---
 import Layout from "@/layouts/Layout.astro"
 import MistBackground from "@/components/MistBackground.astro";
+import Gallery from "@/components/Gallery.astro";
 import KeepScrolling from "@/assets/keep-scrolling.svg"
 ---
 
 <Layout>
-  <MistBackground />
+
   <section class="banner-video relative">
     <div class="bg-video">
       <video autoplay muted loop preload="none" >
@@ -14,32 +15,37 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
       </video>
     </div>
     <div class="absolute top-0 w-full h-full z-2 flex flex-col justify-center items-center">
-      <div class="w-3/4">
-        <h1 class="text-6xl text-bold">Still Wild Nature</h1>
-        <h2 class="text-xl">Night Walk Experience in Monteverde</h2>
+      <div class="w-[90%] xl:w-[70%]">
+        <h1 id="hero-title" class="text-6xl text-bold">Still Wild Nature</h1>
+        <h2 id="hero-subtitle" class="text-xl">Night Walk Experience in Monteverde</h2>
       </div>
     </div>
     <KeepScrolling
-      class="fixed bottom-3 right-0 left-0 mx-auto text-white z-2 drop-shadow-2xl animate-bounce-pulse"
+      class="absolute bottom-3 right-0 left-0 mx-auto text-white z-2 drop-shadow-2xl animate-bounce-pulse"
     />
   </section>
 
-  <div class="relative z-2 flex justify-center">
-    <div class="w-3/4">
-      <section class="mt-30">
-        <h2>Sobre nosotros</h2>
+  <div class="relative flex flex-col items-center">
+      <section class="gallery py-32 w-[90%] xl:w-[80%]">
+        <Gallery />
       </section>
-    
+
       <section>
         <h2>Tours</h2>
+        <p>Caminata noscturna, avistamiento de aves</p>
       </section>
-    
-      <section>
-        <h2>Gallería</h2>
+      
+      <section class="mt-30">
+        <h2>Sobre nosotros</h2>
+        <p>The Best Tour Guide</p>
       </section>
     
       <section>
         <h2>Contacto</h2>
+      </section>
+
+      <section>
+        <h2>Customer Experiences</h2>
       </section>
     </div>
   </div>
@@ -73,8 +79,45 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
 <script>
   import { gsap } from "gsap"
   import { ScrollTrigger } from "gsap/ScrollTrigger"
+  import { ScrollSmoother } from "gsap/ScrollSmoother";
   import { SplitText } from "gsap/SplitText"
 
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.registerPlugin(SplitText);
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  const title = document.querySelector("#hero-title");
+  const subtitle = document.querySelector("#hero-subtitle");
+
+  let titleSplit;
+  let subtitleSplit;
+
+  function initAnimation() {
+    // limpiar si ya existía
+    titleSplit?.revert();
+    subtitleSplit?.revert();
+
+    titleSplit = new SplitText(title, { type: "words" });
+    subtitleSplit = new SplitText(subtitle, { type: "words" });
+
+    const tl = gsap.timeline({ ease: "power2.out" });
+
+    tl.from(titleSplit.words, {
+      duration: 0.3,
+      y: 35,
+      stagger: 0.1
+    })
+    .from(titleSplit.words, {
+      duration: 0.3,
+      autoAlpha: 0,
+      stagger: 0.1,
+      filter: "blur(3px)"
+    }, 0.2)
+    .from(subtitleSplit.words, {
+      duration: 0.3,
+      y: 20,
+      autoAlpha: 0,
+      stagger: 0.05
+    }, "-=0.2");
+  }
+
+  initAnimation();
 </script>
