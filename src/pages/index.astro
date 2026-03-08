@@ -1,8 +1,9 @@
 ---
 import Layout from "@/layouts/Layout.astro"
-import MistBackground from "@/components/MistBackground.astro";
 import Gallery from "@/components/Gallery.astro";
 import KeepScrolling from "@/assets/keep-scrolling.svg"
+
+const { lang = "en"} = Astro.props;
 ---
 
 <Layout>
@@ -26,14 +27,69 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
   </section>
 
   <div class="relative flex flex-col items-center">
-      <section class="gallery py-32 w-[90%] xl:w-[80%]">
+      <section class="gallery py-32 w-[90%] ">
         <Gallery />
       </section>
 
-      <section>
-        <h2>Tours</h2>
-        <p>Caminata noscturna, avistamiento de aves</p>
-      </section>
+      <section id="sobre-nosotros" class="w-[90%] xl:w-[80%] md:mt-10 mx-auto">
+        <div class="flex flex-col justify-between mb-30 gap-6">
+          <div class="tours-head w-full flex items-center flex-col">
+            <h3 class="tracking-wide text-2xl">
+              Tours
+            </h3>
+      
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-center">
+              {lang === "en"
+                ? "Unique experiences designed for every type of traveler"
+                : "Experiencias únicas diseñadas para cada tipo de viajero"}
+            </h2>
+          </div>
+        </div>
+
+        <article class=" flex row justify-between mb-30">
+          <div class="parallax-wrapper w-2/4">
+            <img 
+              src="/images/gallery/img3.webp" 
+              alt="Hero"
+              class="parallax-image"
+            />
+          </div>
+          <div class="w-1/2 pl-10 pr-20">
+            <h3 class="text-4xl mb-1">Night walk</h3>
+            <h4 class="text-xl mb-5">Discover Monteverde after dark</h4>
+            <p>Explore the magic of Monteverde’s cloud forest after sunset. Guided by a local naturalist, discover the incredible nocturnal wildlife that awakens at night — from frogs and insects to sleeping birds and hidden mammals. This immersive walk reveals a completely different side of the forest that most visitors never see during the day.</p>
+          </div>
+        </article>
+
+        <article class=" flex row justify-between mb-30">
+          <div class="w-1/2 pl-10 pr-20">
+            <h3 class="text-4xl mb-1">Private Night Walk</h3>
+            <h4 class="text-xl mb-5">A private wildlife experience</h4>
+            <p>Enjoy a more personal and flexible night walk through the Monteverde cloud forest. This private tour allows you to explore at your own pace with a dedicated guide focused entirely on your group. Perfect for photographers, families, or anyone looking for a more intimate wildlife experience.</p>
+          </div>
+          <div class="parallax-wrapper w-2/4">
+            <img 
+              src="/images/gallery/img3.webp" 
+              alt="Hero"
+              class="parallax-image"
+            />
+          </div>
+        </article>
+
+        <article class=" flex row justify-between mb-30">
+          <div class="parallax-wrapper w-2/4">
+            <img 
+              src="/images/gallery/img3.webp" 
+              alt="Hero"
+              class="parallax-image"
+            />
+          </div>
+          <div class="w-1/2 pl-10 pr-20">
+            <h3 class="text-4xl mb-1">Bird Watching in Monteverde</h3>
+            <h4 class="text-xl mb-5">Explore one of the world’s top birding destinations</h4>
+            <p>Monteverde is one of the best birdwatching destinations in the world. Join an experienced guide to search for colorful species such as toucans, motmots, hummingbirds, and the famous resplendent quetzal. Whether you are a beginner or an experienced birder, this tour offers an unforgettable opportunity to discover Costa Rica’s incredible avian diversity.</p>
+          </div>
+        </article>
       
       <section class="mt-30">
         <h2>Sobre nosotros</h2>
@@ -74,12 +130,27 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
     background: rgba(0, 0, 0, 0.3);
     z-index: 1;
   }
+
+  .parallax-wrapper {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+  }
+
+  .parallax-image {
+    position: absolute;
+    width: 100%;
+    height: 140%;
+    object-fit: cover;
+    top: -20%;
+    left: 0;
+    will-change: transform;
+  }
 </style>
 
 <script>
   import { gsap } from "gsap"
   import { ScrollTrigger } from "gsap/ScrollTrigger"
-  import { ScrollSmoother } from "gsap/ScrollSmoother";
   import { SplitText } from "gsap/SplitText"
 
   gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -87,11 +158,10 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
   const title = document.querySelector("#hero-title");
   const subtitle = document.querySelector("#hero-subtitle");
 
-  let titleSplit;
-  let subtitleSplit;
+  let titleSplit: SplitText | undefined;
+  let subtitleSplit: SplitText | undefined;
 
   function initAnimation() {
-    // limpiar si ya existía
     titleSplit?.revert();
     subtitleSplit?.revert();
 
@@ -120,4 +190,42 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
   }
 
   initAnimation();
+
+  const toursHead = document.querySelector(".tours-head");
+
+  if (toursHead) {
+    gsap.from(toursHead, {
+      y: 50,
+      autoAlpha: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: toursHead,
+      }
+    });
+  }
+
+  gsap.utils.toArray<HTMLElement>(".parallax-wrapper").forEach((wrapper) => {
+
+    const image = wrapper.querySelector<HTMLElement>(".parallax-image");
+    if (!image) return;
+
+    gsap.fromTo(
+      image,
+      { yPercent: -20 },
+      {
+        yPercent: 30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: wrapper,
+          start: "top 140%",
+          end: "bottom -20%",
+          scrub: 2
+        }
+      }
+    );
+
+  });
+  ScrollTrigger.refresh();
+
 </script>
