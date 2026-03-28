@@ -1,14 +1,14 @@
 ---
-import StrategyIcon from "./icons/StrategyIcon.astro";
-import CreativityIcon from "./icons/CreativityIcon.astro";
-import PerformanceIcon from "./icons/PerformanceIcon.astro";
+import SmalGroupsIcon from "./icons/SmalGroupsIcon.astro";
+import LocalExperienceIcon from "./icons/LocalExperienceIcon.astro";
+import NatureCareIcon from "./icons/NatureCareIcon.astro";
 
 const { title, description, icon } = Astro.props;
 
 const iconMap = {
-  strategy: StrategyIcon,
-  creativity: CreativityIcon,
-  performance: PerformanceIcon,
+  smalGroup: SmalGroupsIcon,
+  localExperience: LocalExperienceIcon,
+  natureCare: NatureCareIcon,
 };
 
 const IconComponent = iconMap[icon];
@@ -18,7 +18,7 @@ const IconComponent = iconMap[icon];
   <div class="rounded-2xl h-full bg-black shadow-lg p-6 md:p-8 flex flex-col items-center transition-all duration-300 hover:-translate-y-3 hover:shadow-xl">
     
     <div class="w-[60px] h-[60px]">
-      {IconComponent && <IconComponent class="w-full h-full text-[#FE792A] hover:text-[#FF6434] transition" />}
+      {IconComponent && <IconComponent color="#FE792A" class="w-full h-full text-[#FE792A] hover:text-[#FF6434] transition" />}
     </div>
 
     <h4 class="text-xl font-semibold mt-6 mb-3">{title}</h4>
