@@ -2,6 +2,11 @@
 import Layout from "@/layouts/Layout.astro"
 import Gallery from "@/components/Gallery.astro";
 import KeepScrolling from "@/assets/keep-scrolling.svg"
+import TourCard from "@/components/TourCard.astro";
+import AboutUsCard from "@/components/AboutUsCard.astro";
+import Button from "@/components/Button.astro";
+import tours from "@/data/tours.json";
+import aboutUs from "@/data/aboutUs.json";
 
 const { lang = "en"} = Astro.props;
 ---
@@ -46,55 +51,52 @@ const { lang = "en"} = Astro.props;
           </div>
         </div>
 
-        <article class=" flex row justify-between mb-30">
-          <div class="parallax-wrapper w-2/4">
-            <img 
-              src="/images/gallery/img3.webp" 
-              alt="Hero"
-              class="parallax-image"
-            />
-          </div>
-          <div class="w-1/2 pl-10 pr-20">
-            <h3 class="text-4xl mb-1">Night walk</h3>
-            <h4 class="text-xl mb-5">Discover Monteverde after dark</h4>
-            <p>Explore the magic of Monteverde’s cloud forest after sunset. Guided by a local naturalist, discover the incredible nocturnal wildlife that awakens at night — from frogs and insects to sleeping birds and hidden mammals. This immersive walk reveals a completely different side of the forest that most visitors never see during the day.</p>
-          </div>
-        </article>
+        <section class="tours">
 
-        <article class=" flex row justify-between mb-30">
-          <div class="w-1/2 pl-10 pr-20">
-            <h3 class="text-4xl mb-1">Private Night Walk</h3>
-            <h4 class="text-xl mb-5">A private wildlife experience</h4>
-            <p>Enjoy a more personal and flexible night walk through the Monteverde cloud forest. This private tour allows you to explore at your own pace with a dedicated guide focused entirely on your group. Perfect for photographers, families, or anyone looking for a more intimate wildlife experience.</p>
-          </div>
-          <div class="parallax-wrapper w-2/4">
-            <img 
-              src="/images/gallery/img3.webp" 
-              alt="Hero"
-              class="parallax-image"
+          {tours.map((tour, index) => (
+            <TourCard 
+              tour={tour} 
+              reverse={index % 2 !== 0} 
             />
-          </div>
-        </article>
-
-        <article class=" flex row justify-between mb-30">
-          <div class="parallax-wrapper w-2/4">
-            <img 
-              src="/images/gallery/img3.webp" 
-              alt="Hero"
-              class="parallax-image"
-            />
-          </div>
-          <div class="w-1/2 pl-10 pr-20">
-            <h3 class="text-4xl mb-1">Bird Watching in Monteverde</h3>
-            <h4 class="text-xl mb-5">Explore one of the world’s top birding destinations</h4>
-            <p>Monteverde is one of the best birdwatching destinations in the world. Join an experienced guide to search for colorful species such as toucans, motmots, hummingbirds, and the famous resplendent quetzal. Whether you are a beginner or an experienced birder, this tour offers an unforgettable opportunity to discover Costa Rica’s incredible avian diversity.</p>
-          </div>
-        </article>
+          ))}
+        
+        </section>
       
-      <section class="mt-30">
-        <h2>Sobre nosotros</h2>
-        <p>The Best Tour Guide</p>
-      </section>
+        <section id="sobre-nosotros" class="w-[90%] xl:w-[80%] mt-24 md:mt-32 mx-auto">
+          <div class="flex flex-col justify-between mb-12 gap-6">
+            <div class="w-full flex items-center flex-col">
+              <h3 class="text-xl tracking-wide text-[#4E7C59]">
+                {lang === "en" ? "Why Explore Monteverde With Us" : "Por qué explorar Monteverde con nosotros"}
+              </h3>
+        
+              <h2 class="text-2xl md:text-4xl font-bold mt-2 text-center">
+                {lang === "en"
+                  ? "Authentic experiences guided by passion, knowledge, and a deep respect for nature."
+                  : "Experiencias auténticas guiadas por la pasión, el conocimiento y un profundo respeto por la naturaleza."}
+              </h2>
+            </div>
+          </div>
+        
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {aboutUs.map((item) => (
+              <AboutUsCard
+                title={item.title}
+                description={item.description}
+                icon={item.icon}
+              />
+            ))}
+          </div>
+
+          <div class="flex mt-20">
+            <div class="w-1/2">
+              <p class="pr-15 text-lg">You’re not just booking a tour — you’re stepping into a deeper connection with nature.
+                At Still Wild Nature, every experience is crafted to slow down, observe, and truly feel the magic of the cloud forest. Whether it’s the silence of the night walk or the first sounds of the forest at sunrise, we help you see Monteverde in a way that stays with you long after your visit.</p>
+            </div>
+          <div class="w-1/2">
+            <img src="/images/gallery/img1.webp" alt="">
+          </div>
+          </div>
+        </section>
     
       <section>
         <h2>Contacto</h2>
@@ -129,22 +131,6 @@ const { lang = "en"} = Astro.props;
     inset: 0;
     background: rgba(0, 0, 0, 0.3);
     z-index: 1;
-  }
-
-  .parallax-wrapper {
-    position: relative;
-    height: 600px;
-    overflow: hidden;
-  }
-
-  .parallax-image {
-    position: absolute;
-    width: 100%;
-    height: 140%;
-    object-fit: cover;
-    top: -20%;
-    left: 0;
-    will-change: transform;
   }
 </style>
 
@@ -205,27 +191,60 @@ const { lang = "en"} = Astro.props;
     });
   }
 
-  gsap.utils.toArray<HTMLElement>(".parallax-wrapper").forEach((wrapper) => {
+  window.addEventListener("load", () => {
 
-    const image = wrapper.querySelector<HTMLElement>(".parallax-image");
-    if (!image) return;
+    gsap.utils.toArray(".parallax-wrapper").forEach((wrapper) => {
 
-    gsap.fromTo(
-      image,
-      { yPercent: -20 },
-      {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: wrapper,
-          start: "top 140%",
-          end: "bottom -20%",
-          scrub: 2
+      const image = wrapper.querySelector(".parallax-image")
+      if (!image) return
+
+      gsap.fromTo(
+        image,
+        { yPercent: -20 },
+        {
+          yPercent: 30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapper,
+            start: "top 140%",
+            end: "bottom -20%",
+            scrub: 2
+          }
         }
-      }
-    );
+      )
 
-  });
-  ScrollTrigger.refresh();
+    })
 
+    gsap.utils.toArray(".tour-card").forEach((card) => {
+
+      const image = card.querySelector(".image-anim")
+      const text = card.querySelector(".text-anim")
+
+      if (!image || !text) return
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: card,
+          start: "top bottom",
+          toggleActions: "play none none none"
+        }
+      })
+
+      tl.from(image, {
+        y: 80,
+        autoAlpha: 0,
+        duration: 1,
+        ease: "power2.out"
+      })
+      .from(text, {
+        y: 40,
+        autoAlpha: 0,
+        duration: 1,
+        ease: "power2.out"
+      }, "-=0.6")
+
+    })
+
+    ScrollTrigger.refresh(true)
+  })
 </script>
