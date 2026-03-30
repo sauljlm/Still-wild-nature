@@ -1,0 +1,62 @@
+[
+    {
+      "title": "Night Walk",
+      "subtitle": "Discover Monteverde after dark",
+      "image": "/images/gallery/img3.webp",
+      "description": "Experience the cloud forest in a completely different way after sunset. During this guided night walk, a local naturalist will help you discover the fascinating nocturnal wildlife of Monteverde.",
+      "details": [
+        "Duration: ~2 hours",
+        "Group size: Small groups",
+        "Includes: Flashlight and naturalist guide",
+        "Best for: Wildlife lovers and first-time visitors"
+      ]
+    },
+    {
+      "title": "Private Night Walk",
+      "subtitle": "A private wildlife experience",
+      "image": "/images/gallery/img3.webp",
+      "description": "Enjoy a more personal and flexible night walk through the Monteverde cloud forest with a dedicated guide focused entirely on your group.",
+      "details": [
+        "Duration: ~2 hours",
+        "Group size: Private tour",
+        "Includes: Flashlight and private naturalist guide",
+        "Best for: Families, photographers, and couples"
+      ]
+    },
+    {
+      "title": "Bird Watching Tour",
+      "subtitle": "Explore one of the world’s top birding destinations",
+      "image": "/images/gallery/img3.webp",
+      "description": "Monteverde is one of the best birdwatching destinations in the world. Join an experienced guide to search for toucans, hummingbirds, motmots and the famous resplendent quetzal.",
+      "details": [
+        "Duration: ~3 hours",
+        "Best time: Early morning",
+        "Includes: Birding guide and spotting scope",
+        "Best for: Nature lovers and bird enthusiasts"
+      ]
+    },
+    {
+      "title": "Cloud Forest Wildlife Walk",
+      "subtitle": "Discover the biodiversity of Monteverde",
+      "image": "/images/gallery/img3.webp",
+      "description": "Explore the lush cloud forest while spotting wildlife such as monkeys, birds, and fascinating insects while learning about the ecosystem of Monteverde.",
+      "details": [
+        "Duration: ~2–3 hours",
+        "Group size: Small groups",
+        "Includes: Naturalist guide",
+        "Best for: First-time visitors"
+      ]
+    },
+    {
+      "title": "Sunrise Forest Walk",
+      "subtitle": "Experience the forest as it wakes up",
+      "image": "/images/gallery/img3.webp",
+      "description": "Start your day surrounded by the sounds of the cloud forest. Birds begin singing, animals become active, and the forest comes alive.",
+      "details": [
+        "Duration: ~2 hours",
+        "Best time: Early morning",
+        "Includes: Naturalist guide",
+        "Best for: Wildlife and photography lovers"
+      ]
+    }
+  ]

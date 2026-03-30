@@ -1,0 +1,100 @@
+---
+---
+<section class="images"></section>
+
+<style is:global>
+    .images {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin: 0 auto;
+    }
+
+    .images img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 12px;
+        will-change: transform;
+        transition: transform 0.4s ease;
+    }
+
+    .images img:hover {
+        transform: scale(1.3) !important;
+        z-index: 10;
+    }
+    /* .images img:nth-child(4n + 1) { margin-left: -40px; }
+    .images img:nth-child(4n + 2) { margin-left: 40px; }
+    .images img:nth-child(4n + 3) { margin-left: -20px; }
+    .images img:nth-child(4n + 4) { margin-left: 60px; } */
+
+    @media (max-width: 1024px) {
+        .images {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+</style>
+    
+<script type="module">
+    import gsap from "https://cdn.skypack.dev/gsap@3.13.0";
+    import ScrollTrigger from "https://cdn.skypack.dev/gsap@3.13.0/ScrollTrigger";
+
+    const imageBank = [
+        "/images/gallery/img1.webp",
+        "/images/gallery/img2.webp",
+        "/images/gallery/img3.webp",
+        "/images/gallery/img4.webp",
+        "/images/gallery/img5.webp",
+        "/images/gallery/img6.webp",
+        "/images/gallery/img7.webp",
+        "/images/gallery/img8.webp",
+        "/images/gallery/img9.webp",
+        "/images/gallery/img10.webp",
+        "/images/gallery/img11.webp",
+        "/images/gallery/img12.webp",
+        "/images/gallery/img13.webp",
+        "/images/gallery/img14.webp",
+        "/images/gallery/img15.webp",
+        "/images/gallery/img16.webp",
+    ];
+
+    const speeds = [1.2, 1.3, 1.4];
+
+    const container = document.querySelector(".images");
+    const imagesToShow = 12;
+    gsap.registerPlugin(ScrollTrigger);
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    const shuffled = shuffle([...imageBank]).slice(0, imagesToShow);
+
+    shuffled.forEach((src) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "";
+        img.dataset.speed = speeds[Math.floor(Math.random() * speeds.length)];
+        container.appendChild(img);
+    });
+
+    gsap.utils.toArray(".images img").forEach((img) => {
+        const speed = parseFloat(img.dataset.speed || 1);
+
+        gsap.to(img, {
+            yPercent: (speed - 1) * 40,
+            ease: "none",
+            scrollTrigger: {
+            trigger: ".images",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.5
+            }
+        });
+    });
+</script>

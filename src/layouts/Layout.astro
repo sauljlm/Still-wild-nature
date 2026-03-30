@@ -1,5 +1,7 @@
 ---
-import KeepScrolling from "@/assets/keep-scrolling.svg"
+import Nav from "@/components/Nav.astro";
+import Footer from "@/components/Footer.astro";
+import MistBackground from "@/components/MistBackground.astro";
 ---
 
 <!doctype html>
@@ -11,10 +13,30 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
     <title>Still wild nature</title>
   </head>
   <body>
-    <slot />
-    <KeepScrolling
-      class="fixed bottom-3 right-0 left-0 mx-auto text-white z-2 drop-shadow-2xl animate-bounce-pulse"
-    />
+    <div id="wrapper">
+      <MistBackground />
+      <div id="content">
+        <Nav lang="en" />
+        <slot />
+        <Footer />
+      </div>
+    </div>
+
+    <script type="module">
+      import gsap from "https://cdn.skypack.dev/gsap@3.13.0";
+      import ScrollTrigger from "https://cdn.skypack.dev/gsap@3.13.0/ScrollTrigger";
+      import ScrollSmoother from "https://cdn.skypack.dev/gsap@3.13.0/ScrollSmoother";
+
+      gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+      ScrollSmoother.create({
+        wrapper: "#wrapper",
+        content: "#content",
+        smooth: 2,
+        speed: 1.2,
+        effects: true
+      });
+    </script>
   </body>
 </html>
 
@@ -47,7 +69,7 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
 
   html,
   body {
-    background: #111;
+    background: #0B0F0C;
     min-height: 300vh;
     overflow-x: hidden;
     overscroll-behavior-y: auto;

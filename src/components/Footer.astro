@@ -1,0 +1,125 @@
+---
+const pathname = Astro.url.pathname;
+const isEnglish = pathname.startsWith("/en");
+
+const basePath = isEnglish ? "/en" : "";
+
+function getLangPath(targetLang) {
+  if (targetLang === "en") {
+    return pathname.startsWith("/en") ? pathname : "/en" + pathname;
+  } else {
+    return pathname.replace(/^\/en/, "") || "/";
+  }
+}
+---
+
+<footer class="text-[#9898a1] pt-12 relative z-2" role="contentinfo">
+  <div class="container mx-auto py-12 w-[90%] xl:w-[70%]">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Information -->
+      <div class="text-center md:text-left">
+        <h3 class="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-[#bcbcc7]">
+          {isEnglish ? "Information" : "Información"}
+        </h3>
+
+        <ul class="space-y-2">
+          <li>
+            <a href={`${basePath}/#portafolio`} class="footer-link">
+              {isEnglish ? "Portfolio" : "Portafolio"}
+            </a>
+          </li>
+
+          <li>
+            <a href={`${basePath}/#sobre-nosotros`} class="footer-link">
+              {isEnglish ? "About us" : "Sobre nosotros"}
+            </a>
+          </li>
+
+          <li>
+            <a href={`${basePath}/#nuestros-servicios`} class="footer-link">
+              {isEnglish ? "Services" : "Servicios"}
+            </a>
+          </li>
+
+          <li>
+            <a href={`${basePath}/#preguntas-frecuentes`} class="footer-link">
+              {isEnglish ? "Frequently asked questions" : "Preguntas frecuentes"}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="text-center md:text-left">
+        <h3 class="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-[#bcbcc7]">
+          {isEnglish ? "Contact" : "Contacto"}
+        </h3>
+
+        <ul class="space-y-2">
+          <li>
+            <a href="mailto:daunerap98@gmail.com" class="footer-link">
+              {isEnglish ? "Email" : "Correo"}: daunerap98@gmail.com
+            </a>
+          </li>
+
+          <li>
+            <a href="tel:+50686654446" class="footer-link">
+              {isEnglish ? "Phone" : "Teléfono"}: +506 8665 4446
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Language -->
+      <div class="text-center md:text-left">
+        <h3 class="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-[#bcbcc7]">
+          {isEnglish ? "Language" : "Idioma"}
+        </h3>
+
+        <ul class="space-y-2">
+          <li>
+            <a href={getLangPath("es")} class="footer-link">
+              Español
+            </a>
+          </li>
+          <li>
+            <a href={getLangPath("en")} class="footer-link">
+              English
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="my-8 border-t border-[#D4D5DD]"></div>
+
+    <div class="flex flex-col items-center gap-4">
+
+      <!-- Social Icons -->
+      <div class="flex items-center gap-3">
+
+        <a href="https://www.instagram.com/still_wild_nature/" target="_blank" aria-label="Instagram"
+           class="w-9 h-9 flex items-center justify-center rounded-md border border-[#C7C8D2] text-[#9898a1] hover:bg-gray-100 transition-all duration-500">
+           <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" className="w-5 h-5" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg>
+        </a>
+
+        <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"
+           class="w-9 h-9 flex items-center justify-center rounded-md border border-[#C7C8D2] text-[#9898a1] hover:bg-gray-100 transition-all duration-500">
+           <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" className="w-5 h-5" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>
+        </a>
+
+      </div>
+
+      <p class="text-sm md:text-base text-[#9898a1] font-medium">
+        {isEnglish
+          ? "© 2026 Still Wild Nature. All rights reserved"
+          : "© 2026 Still Wild Nature. Todos los derechos reservados."}
+      </p>
+
+    </div>
+
+  </div>
+</footer>
