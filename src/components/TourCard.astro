@@ -11,19 +11,16 @@ const message = isEnglish
 const contactUrl = `https://wa.me/50686654446?text=${encodeURIComponent(message)}`;
 ---
 
-<article class="tour-card flex justify-between mb-40">
-  
-  { !reverse && (
-    <div class="image-anim parallax-wrapper w-2/4">
-      <img
-        src={tour.image}
-        alt={tour.title}
-        class="parallax-image"
-      />
-    </div>
-  )}
+<article class="tour-card flex flex-col md:flex-row justify-between mb-20 md:mb-40">
+  <div class={`image-anim parallax-wrapper w-full md:w-1/2 ${reverse ? "md:order-2" : ""}`}>
+    <img
+      src={tour.image}
+      alt={tour.title}
+      class="parallax-image"
+    />
+  </div>
 
-  <div class="text-anim w-1/2 pl-10 pr-20">
+  <div class={`text-anim w-full md:w-1/2 md:pl-10 md:pr-20 mt-6 md:mt-0 ${reverse ? "md:order-1" : ""}`}>
     <h3 class="text-[#4E7C59] text-4xl mb-1">{tour.title}</h3>
     <h4 class="text-xl mb-5">{tour.subtitle}</h4>
 
@@ -61,32 +58,34 @@ const contactUrl = `https://wa.me/50686654446?text=${encodeURIComponent(message)
     </div>
   </div>
 
-  { reverse && (
-    <div class="image-anim parallax-wrapper w-2/4">
-      <img
-        src={tour.image}
-        alt={tour.title}
-        class="parallax-image"
-      />
-    </div>
-  )}
-
 </article>
 
 <style>
-    .parallax-wrapper {
-        position: relative;
-        height: 600px;
-        overflow: hidden;
-    }
+  .parallax-wrapper {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+  }
 
-    .parallax-image {
-        position: absolute;
-        width: 100%;
-        height: 140%;
-        object-fit: cover;
-        top: -20%;
-        left: 0;
-        will-change: transform;
+  @media (min-width: 1024px) {
+    .parallax-wrapper {
+      height: 500px;
     }
+  }
+
+  @media (min-width: 768px) {
+    .parallax-wrapper {
+      height: 600px;
+    }
+  }
+
+  .parallax-image {
+      position: absolute;
+      width: 100%;
+      height: 140%;
+      object-fit: cover;
+      top: -20%;
+      left: 0;
+      will-change: transform;
+  }
 </style>

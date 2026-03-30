@@ -14,16 +14,16 @@ const iconMap = {
 const IconComponent = iconMap[icon];
 ---
 
-<article class="h-full">
+<article class="h-full why-us-card">
   <div class="rounded-2xl h-full bg-black shadow-lg p-6 md:p-8 flex flex-col items-center transition-all duration-300 hover:-translate-y-3 hover:shadow-xl">
     
     <div class="w-[60px] h-[60px]">
-      {IconComponent && <IconComponent color="#FE792A" class="w-full h-full text-[#FE792A] hover:text-[#FF6434] transition" />}
+      {IconComponent && <IconComponent color="#4E7C59" class="w-full h-full transition" />}
     </div>
 
-    <h4 class="text-xl font-semibold mt-6 mb-3">{title}</h4>
+    <h4 class="text-2xl font-semibold mt-6 mb-3 text-center">{title}</h4>
 
-    <p class="text-gray-400 text-center">
+    <p class="text-gray-400 text-lg text-center">
       {description}
     </p>
 
