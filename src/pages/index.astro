@@ -1,7 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro"
 import Gallery from "@/components/Gallery.astro";
-import KeepScrolling from "@/assets/keep-scrolling.svg"
 import TourCard from "@/components/TourCard.astro";
 import AboutUsCard from "@/components/AboutUsCard.astro";
 import Reviews from "@/components/Reviews.astro";
@@ -12,8 +11,7 @@ const { lang = "en"} = Astro.props;
 ---
 
 <Layout>
-
-  <section class="banner-video relative">
+  <section class="banner-video ">
     <div class="bg-video">
       <video autoplay muted loop preload="none" >
         <source src="/videos/forest.mp4" type="video/mp4" />
@@ -26,14 +24,9 @@ const { lang = "en"} = Astro.props;
         <h2 id="hero-subtitle" class="text-l md:text-xl">Night Walk Experience in Monteverde</h2>
       </div>
     </div>
-    <KeepScrolling
-      class="absolute bottom-3 right-0 left-0 mx-auto text-white z-2 drop-shadow-2xl animate-bounce-pulse"
-    />
   </section>
 
   <div class="relative flex flex-col items-center">
-
-
       <section id="sobre-nosotros" class="w-[90%] xl:w-[80%] mt-20 md:mt-10 mx-auto">
         <div class="flex flex-col justify-between mb-30 gap-6">
           <div class="tours-head w-full flex items-center flex-col">
@@ -120,7 +113,7 @@ const { lang = "en"} = Astro.props;
     top: 0;
     left: 0;
     width: 100%;
-    height: 90vh;
+    height: 92vh;
     object-fit: cover;
     z-index: 1;           
   }
