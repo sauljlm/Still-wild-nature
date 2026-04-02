@@ -11,7 +11,7 @@ const { lang = "en"} = Astro.props;
 ---
 
 <Layout>
-  <section class="banner-video">
+  <section class="banner-video relative">
     <div class="bg-video">
       <video autoplay muted loop preload="none" >
         <source src="/videos/forest.mp4" type="video/mp4" />
@@ -27,7 +27,7 @@ const { lang = "en"} = Astro.props;
   </section>
 
   <div class="relative flex flex-col items-center">
-      <section id="sobre-nosotros" class="w-[90%] xl:w-[80%] mt-20 md:mt-10 mx-auto">
+      <section id="sobre-nosotros" class="w-[90%] xl:w-[80%] mt-24 md:mt-10 mx-auto">
         <div class="flex flex-col justify-between mb-30 gap-6">
           <div class="tours-head w-full flex items-center flex-col">
             <h3 class="tracking-wide text-lg md:text-2xl">
