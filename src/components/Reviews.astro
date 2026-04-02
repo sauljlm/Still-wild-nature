@@ -1,149 +1,201 @@
 ---
 import reviews from "@/data/reviews.json";
-const allReviews = [...reviews.reviews, ...reviews.reviews];
+import StarIcon from "./icons/StarIcon.astro";
+import GoogleIcon from "./icons/GoogleIcon.astro";
 ---
 
 <section class="slider-container mt-10 relative">
-    <button class="slider-btn left" id="prevBtn">
-      ←
-    </button>
+    <div class="w-full p-6 bg-[#242424] shadow-md rounded-xl mb-5 flex justify-between items-center">
+        <div class="flex items-center">
+            <span class="text-3xl md:text-5xl font-bold mr-2">5.0</span>
+            <div class="flex flex-col justify-center">
+                <div class="flex">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <StarIcon
+                        class={`w-4 h-4 ${
+                          i < 5 ? "text-yellow-400" : "text-gray-400"
+                        }`}
+                      />
+                    ))}
+                </div>
+                <div class="flex flex-col md:flex-row">
+                    <span class="mr-2 text-xs md:text-base">53 reviews on</span>
+                    <span class="w-[56.24px]"><GoogleIcon/></span>
+                </div>
+            </div>
+        </div>
+        <button class="bg-blue-500 hover:bg-blue-400 active:bg-blue-300 text-white font-bold text-xs md:text-sm rounded-2xl transition-all h-fit">
+            <a aria-label="View Still Wild Nature Night Walk Tour on Google Maps" target="_blank" class="block px-2 md:px-5 py-2 md:py-2 rounded-2xl" href="https://www.google.com/maps/place/Still+Wild+Nature%2FNight+walk+Tour/@10.2662426,-84.9817386,13z/data=!3m1!4b1!4m3!3m2!1s0x2588265d27bf78b9:0xfaaed99520822d07!16s%2Fg%2F11ymyz0yw4!17m2!4m1!1e3!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDMzMC4wIKXMDSoASAFQAw%3D%3D" >Review us on Google</a>
+        </button>
+    </div>
 
-    <div class="slider flex gap-6 overflow-x-auto scroll-smooth no-scrollbar">
-      {allReviews.map((review) => (
-        <div class="slide flex-shrink-0 w-[300px] md:w-[350px] p-6 bg-black shadow-md rounded-xl">
-          
-          <div class="flex items-center mb-3">
+    <button class="slider-btn left">←</button>
+
+    <div class="slider flex gap-6 overflow-x-auto no-scrollbar">
+    {reviews.reviews.map((review) => (
+        <div class="slide flex-shrink-0 w-[300px] md:w-[350px] p-6 bg-[#242424] shadow-md rounded-xl">
+            
+            <div class="flex items-center mb-3">
             <img width="50px" src={review.profile_image} alt="">
             
             <div class="flex flex-col ml-5">
-              <span class="font-semibold text-white">{review.author_name}</span>
-              <span class="text-xs text-gray-300">
+                <span class="font-semibold text-white">{review.author_name}</span>
+                <span class="text-xs text-gray-300">
                 {review.relative_time_description}
-              </span>
+                </span>
             </div>
-          </div>
-  
-          <div class="flex mb-3">
-            {"⭐".repeat(review.rating)}
-          </div>
-  
-          <p class="text-sm text-gray-100">
+            </div>
+
+            <div class="flex mb-3">
+                {Array.from({ length: review.rating }).map((_, i) => (
+                    <StarIcon class="text-yellow-400 w-4 h-4" />
+                ))}
+            </div>
+
+            <p class="text-sm text-gray-100">
             {review.text}
-          </p>
+            </p>
         </div>
-      ))}
+    ))}
     </div>
-  
-    <!-- Botón derecha -->
-    <button class="slider-btn right" id="nextBtn">
-      →
-    </button>
+
+    <button class="slider-btn right">→</button>
 </section>
 
 <style>
-    .slider {
-        scroll-behavior: smooth;
-        padding: 10px 40px;
-    }
+.slider {
+  padding: 10px 40px;
+}
 
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
-    .slider-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #000;
-        color: white;
-        border: none;
-        padding: 10px 14px;
-        cursor: pointer;
-        z-index: 10;
-        border-radius: 50%;
-        opacity: 0.8;
-        transition: 0.3s;
-    }
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #000;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  opacity: 0.8;
+  transition: 0.3s;
+}
 
-    .slider-btn:hover {
-        opacity: 1;
-    }
+.slider-btn:hover {
+  opacity: 1;
+}
 
-    .slider-btn.left {
-        left: 0;
-    }
+.slider-btn.left {
+  left: -50px;
+}
 
-    .slider-btn.right {
-        right: 0;
-    }
+.slider-btn.right {
+  right: -50px;
+}
 
-    @media (max-width: 768px) {
-        .slider-btn {
-            display: none;
-        }
-    }
+@media (max-width: 768px) {
+  .slider-btn {
+    display: none;
+  }
+}
 </style>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll('.slider-container').forEach((section) => {
-    
-    const slider = section.querySelector('.slider');
-    const nextBtn = section.querySelector('.slider-btn.right');
-    const prevBtn = section.querySelector('.slider-btn.left');
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll('.slider-container').forEach((section) => {
+            
+            const slider = section.querySelector('.slider');
+            const nextBtn = section.querySelector('.slider-btn.right');
+            const prevBtn = section.querySelector('.slider-btn.left');
 
-    if (!slider || !nextBtn || !prevBtn) return;
+            if (!slider || !nextBtn || !prevBtn) return;
 
-    const slide = slider.querySelector('.slide');
-    if (!(slide instanceof HTMLElement)) return;
+            const slide = slider.querySelector('.slide');
+            if (!(slide instanceof HTMLElement)) return;
 
-    const scrollAmount = slide.offsetWidth + 24;
+            const scrollAmount = slide.offsetWidth + 24;
 
-    let interval;
-    let isScrollingTimeout;
+            let raf;
+            let isScrollingTimeout;
+            let isLoading = false;
 
-    const start = () => {
-        if (interval) return;
+            const originalSlides = Array.from(slider.children);
 
-        const step = () => {
-            slider.scrollLeft += 0.3;
-            interval = requestAnimationFrame(step);
-        };
+            const start = () => {
+                if (raf) return;
 
-        interval = requestAnimationFrame(step);
-    };
+                const step = () => {
+                    slider.scrollLeft += 0.3;
+                    raf = requestAnimationFrame(step);
+                };
 
-    const stop = () => {
-        cancelAnimationFrame(interval);
-        interval = null;
-    };;
+                raf = requestAnimationFrame(step);
+            };
 
-    // 👇 manejo PRO del scroll manual
-    const handleManualScroll = (direction) => {
-      stop();
+            const stop = () => {
+                cancelAnimationFrame(raf);
+                raf = null;
+                };
 
-      slider.scrollBy({
-        left: direction * scrollAmount,
-        behavior: 'smooth'
-      });
+                const handleManualScroll = (direction) => {
+                stop();
 
-      clearTimeout(isScrollingTimeout);
+                slider.scrollBy({
+                    left: direction * scrollAmount,
+                    behavior: 'smooth'
+                });
 
-      isScrollingTimeout = setTimeout(() => {
-        start();
-      }, 800); // tiempo ajustable
-    };
+                clearTimeout(isScrollingTimeout);
 
-    nextBtn.addEventListener('click', () => handleManualScroll(1));
-    prevBtn.addEventListener('click', () => handleManualScroll(-1));
+                isScrollingTimeout = setTimeout(() => {
+                    start();
+                }, 800);
+            };
 
-    // 👇 detener cuando el usuario interactúa
-    slider.addEventListener("mouseenter", stop);
-    slider.addEventListener("mouseleave", start);
-    slider.addEventListener("pointerdown", stop);
-    slider.addEventListener("touchstart", stop);
+            nextBtn.addEventListener('click', () => handleManualScroll(1));
+            prevBtn.addEventListener('click', () => handleManualScroll(-1));
 
-    start();
-  });
-});
+            const appendMoreSlides = () => {
+                originalSlides.forEach((slide) => {
+                    const clone = slide.cloneNode(true);
+                    slider.appendChild(clone);
+                });
+
+                if (slider.children.length > 60) {
+                    for (let i = 0; i < 20; i++) {
+                    slider.removeChild(slider.firstElementChild);
+                    }
+                }
+            };
+
+            slider.addEventListener('scroll', () => {
+                if (isLoading) return;
+
+                const scrollRight = slider.scrollLeft + slider.clientWidth;
+                const threshold = slider.scrollWidth - 200;
+
+                if (scrollRight >= threshold) {
+                    isLoading = true;
+
+                    appendMoreSlides();
+
+                    setTimeout(() => {
+                    isLoading = false;
+                    }, 200);
+                }
+            });
+
+            slider.addEventListener("mouseenter", stop);
+            slider.addEventListener("mouseleave", start);
+            slider.addEventListener("pointerdown", stop);
+            slider.addEventListener("touchstart", stop);
+
+            start();
+        });
+    });
 </script>
