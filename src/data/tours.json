@@ -46,17 +46,5 @@
         "Includes: Naturalist guide",
         "Best for: First-time visitors"
       ]
-    },
-    {
-      "title": "Sunrise Forest Walk",
-      "subtitle": "Experience the forest as it wakes up",
-      "image": "/images/gallery/img3.webp",
-      "description": "Start your day surrounded by the sounds of the cloud forest. Birds begin singing, animals become active, and the forest comes alive.",
-      "details": [
-        "Duration: ~2 hours",
-        "Best time: Early morning",
-        "Includes: Naturalist guide",
-        "Best for: Wildlife and photography lovers"
-      ]
     }
   ]

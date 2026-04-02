@@ -8,16 +8,16 @@ const basePath = isEnglish ? "/en" : "/";
 
 const navigation = isEnglish
   ? [
-      { title: "Gallery", path: "/en/#gallery" },
-      { title: "Tours", path: "/en/#tours" },
-      { title: "Our Services", path: "/en/#our-services" },
-      { title: "Why us", path: "/en/#why-us" },
+    { title: "Tours", path: "/en/#tours" },
+    { title: "Why us", path: "/en/#why-us" },
+    { title: "Customer experiences", path: "/en/#customer-experiences" },
+    { title: "Gallery", path: "/en/#gallery" },
     ]
   : [
-      { title: "Gallery", path: "/#gallery" },
-      { title: "Tours", path: "/#tours" },
-      { title: "Nuestros Servicios", path: "/#our-services" },
-      { title: "Por qué Nosotros", path: "/#Why-us" },
+    { title: "Tours", path: "/#tours" },
+    { title: "Por qué nosotros", path: "/#why-us" },
+    { title: "Reseñas", path: "/#customer-experiences" },
+    { title: "Galeria", path: "/#gallery" },
     ];
 
 const contactUrl = isEnglish
@@ -56,7 +56,7 @@ const contactUrl = isEnglish
           <li>
             <a
               href={item.path}
-              class="border-b-4 border-transparent p-4 md:p-0 rounded-lg md:rounded-none active:text-black md:active:text-white active:bg-white md:active:bg-transparent md:hover:border-white transition text-xl md:text-base transition-all duration-300 ease-in-out"
+              class="border-b-4 border-transparent p-4 md:p-0 rounded-lg md:rounded-none active:text-black md:active:text-white active:bg-white md:active:bg-transparent md:hover:border-white transition text-xl md:text-s transition-all duration-300 ease-in-out"
             >
               {item.title}
             </a>
