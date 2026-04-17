@@ -53,7 +53,7 @@ const { lang = "en"} = Astro.props;
       </section>
 
       <section id="sobre-nosotros" class="w-[90%] xl:w-[65%] mt-24 md:mt-32 mx-auto">
-        <div class="flex flex-col justify-between mb-12 gap-6">
+        <div class="why-us-head flex flex-col justify-between mb-12 gap-6">
           <div class="w-full flex items-center flex-col">
             <h3 class="text-lg md:text-2xl tracking-wide">
               {lang === "en" ? "Why Explore Monteverde With Us" : "Por qué explorar Monteverde con nosotros"}
@@ -173,6 +173,8 @@ const { lang = "en"} = Astro.props;
 
   const title = document.querySelector("#hero-title");
   const subtitle = document.querySelector("#hero-subtitle");
+  const toursHead = document.querySelector(".tours-head");
+  const whyUsHead = document.querySelector(".why-us-head");
 
   let titleSplit: SplitText | undefined;
   let subtitleSplit: SplitText | undefined;
@@ -207,21 +209,29 @@ const { lang = "en"} = Astro.props;
 
   initAnimation();
 
-  const toursHead = document.querySelector(".tours-head");
+  window.addEventListener("load", () => {
 
-  if (toursHead) {
     gsap.from(toursHead, {
       y: 50,
       autoAlpha: 0,
-      duration: 0.8,
+      duration: 1,
       ease: "power2.out",
       scrollTrigger: {
         trigger: toursHead,
+        start: "top 80%"
       }
     });
-  }
 
-  window.addEventListener("load", () => {
+    gsap.from(whyUsHead, {
+        y: 50,
+        autoAlpha: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: whyUsHead,
+          start: "top 80%"
+        }
+    });
 
     gsap.utils.toArray(".parallax-wrapper").forEach((wrapper) => {
 
@@ -295,13 +305,14 @@ const { lang = "en"} = Astro.props;
 
     })
 
-    ScrollTrigger.refresh(true)
-  })
+    gsap.set(".why-us-card", {
+      y: 50,
+      autoAlpha: 0
+    });
 
-  gsap.utils.toArray(".why-us-card").forEach((card) => {
-    ScrollTrigger.batch(card, {
+    ScrollTrigger.batch(".why-us-card", {
       start: "top 85%",
-      onEnter: batch =>
+      onEnter: (batch) =>
         gsap.to(batch, {
           y: 0,
           autoAlpha: 1,
@@ -311,6 +322,6 @@ const { lang = "en"} = Astro.props;
         }),
       once: true,
     });
-
   })
+
 </script>
