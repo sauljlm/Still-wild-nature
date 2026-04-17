@@ -26,10 +26,10 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
       />
     </div>
 
-    <script type="module">
-      import gsap from "https://cdn.skypack.dev/gsap@3.13.0";
-      import ScrollTrigger from "https://cdn.skypack.dev/gsap@3.13.0/ScrollTrigger";
-      import ScrollSmoother from "https://cdn.skypack.dev/gsap@3.13.0/ScrollSmoother";
+    <script>
+      import { gsap } from "gsap"
+      import { ScrollTrigger } from "gsap/ScrollTrigger"
+      import { ScrollSmoother } from "gsap/ScrollSmoother"
 
       gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 

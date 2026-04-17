@@ -61,9 +61,11 @@
 
 </style>
     
-<script type="module">
-    import gsap from "https://cdn.skypack.dev/gsap@3.13.0";
-    import ScrollTrigger from "https://cdn.skypack.dev/gsap@3.13.0/ScrollTrigger";
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
 
     const imageBank = [
         "/images/gallery/img1.webp",
@@ -88,7 +90,6 @@
 
     const container = document.querySelector(".images");
     const imagesToShow = 12;
-    gsap.registerPlugin(ScrollTrigger);
 
     function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {
