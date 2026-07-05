@@ -1,9 +1,11 @@
 ---
 import Button from "./Button.astro";
-const { tour, reverse = false } = Astro.props;
-const { lang = "en" } = Astro.props;
+import { getTranslations } from "@/i18n/translations";
+
+const { tour, reverse = false, lang = "es" } = Astro.props;
 
 const isEnglish = lang === "en";
+const t = getTranslations(lang);
 const message = isEnglish
     ? `Hi, I would like to get more information about ${tour.title}`
     : `Hola, me gustaría saber más información sobre ${tour.title}`;
@@ -12,12 +14,36 @@ const contactUrl = `https://wa.me/50686654446?text=${encodeURIComponent(message)
 ---
 
 <article class="tour-card flex flex-col md:flex-row justify-between mb-20 md:mb-40">
-  <div class={`image-anim parallax-wrapper w-full md:w-1/2 ${reverse ? "md:order-2" : ""}`}>
-    <img
-      src={tour.image}
-      alt={tour.title}
-      class="parallax-image"
-    />
+  <div class={`image-anim parallax-wrapper tour-slider w-full md:w-1/2 ${reverse ? "md:order-2" : ""}`}>
+    <div class="parallax-image">
+      {(tour.images ?? [tour.image]).map((src, i) => (
+        <img
+          src={src}
+          alt={tour.title}
+          class="tour-slide"
+          style={{ opacity: i === 0 ? 1 : 0 }}
+        />
+      ))}
+    </div>
+    {(tour.images?.length ?? 0) > 1 && (
+      <>
+        <button type="button" class="tour-slider-arrow tour-slider-arrow-prev hidden md:flex" aria-label="Previous image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <button type="button" class="tour-slider-arrow tour-slider-arrow-next hidden md:flex" aria-label="Next image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </button>
+        <div class="tour-slider-dots">
+          {tour.images.map((_, i) => (
+            <button
+              type="button"
+              class={`tour-slider-dot ${i === 0 ? "is-active" : ""}`}
+              aria-label={`${tour.title} ${i + 1}`}
+            ></button>
+          ))}
+        </div>
+      </>
+    )}
   </div>
 
   <div class={`text-anim w-full md:w-1/2 md:pl-10 md:pr-20 mt-6 md:mt-0 ${reverse ? "md:order-1" : ""}`}>
@@ -27,7 +53,7 @@ const contactUrl = `https://wa.me/50686654446?text=${encodeURIComponent(message)
     <p class="text-sm md:text-m">{tour.description}</p>
 
     <div class="mt-10">
-      <h4 class="text-m md:text-lg">Details</h4>
+      <h4 class="text-m md:text-lg">{t.tours.details}</h4>
 
       <ul class="pb-10">
         {tour.details.map((detail) => (
@@ -52,7 +78,7 @@ const contactUrl = `https://wa.me/50686654446?text=${encodeURIComponent(message)
 
       <Button variant="secondary">
         <a href={contactUrl} target="_blank">
-          {isEnglish ? "Reserve" : "Reservar"}
+          {t.tours.reserve}
         </a>
       </Button>
     </div>
@@ -83,9 +109,148 @@ const contactUrl = `https://wa.me/50686654446?text=${encodeURIComponent(message)
       position: absolute;
       width: 100%;
       height: 140%;
-      object-fit: cover;
       top: -20%;
       left: 0;
       will-change: transform;
   }
+
+  .tour-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.9s ease;
+  }
+
+  .tour-slider-dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+  }
+
+  .tour-slider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.5);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.3s ease;
+  }
+
+  .tour-slider-dot.is-active {
+      background: #fff;
+      width: 22px;
+  }
+
+  .tour-slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      cursor: pointer;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.3s ease, background 0.3s ease;
+  }
+
+  .tour-slider-arrow svg {
+      width: 18px;
+      height: 18px;
+  }
+
+  .tour-slider-arrow:hover {
+      background: rgba(0, 0, 0, 0.65);
+  }
+
+  .parallax-wrapper:hover .tour-slider-arrow {
+      opacity: 1;
+  }
+
+  .tour-slider-arrow-prev {
+      left: 12px;
+  }
+
+  .tour-slider-arrow-next {
+      right: 12px;
+  }
 </style>
+
+<script>
+  document.querySelectorAll(".tour-slider").forEach((slider) => {
+    const slides = Array.from(slider.querySelectorAll(".tour-slide"));
+    const dots = Array.from(slider.querySelectorAll(".tour-slider-dot"));
+    const prevBtn = slider.querySelector(".tour-slider-arrow-prev");
+    const nextBtn = slider.querySelector(".tour-slider-arrow-next");
+    if (slides.length <= 1) return;
+
+    let activeIndex = 0;
+    let timer;
+
+    const show = (index) => {
+      activeIndex = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        slide.style.opacity = i === activeIndex ? "1" : "0";
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("is-active", i === activeIndex);
+      });
+    };
+
+    const startAutoplay = () => {
+      clearInterval(timer);
+      timer = setInterval(() => show(activeIndex + 1), 3500);
+    };
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        show(i);
+        startAutoplay();
+      });
+    });
+
+    prevBtn?.addEventListener("click", () => {
+      show(activeIndex - 1);
+      startAutoplay();
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      show(activeIndex + 1);
+      startAutoplay();
+    });
+
+    slider.addEventListener("mouseenter", () => clearInterval(timer));
+    slider.addEventListener("mouseleave", startAutoplay);
+
+    // Touch swipe: mobile has no arrows, so a left/right swipe steps through
+    // the images instead.
+    let touchStartX = 0;
+    slider.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].clientX;
+      clearInterval(timer);
+    }, { passive: true });
+
+    slider.addEventListener("touchend", (e) => {
+      const deltaX = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(deltaX) > 40) {
+        show(activeIndex + (deltaX < 0 ? 1 : -1));
+      }
+      startAutoplay();
+    });
+
+    startAutoplay();
+  });
+</script>

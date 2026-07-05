@@ -2,6 +2,10 @@
 import reviews from "@/data/reviews.json";
 import StarIcon from "./icons/StarIcon.astro";
 import GoogleIcon from "./icons/GoogleIcon.astro";
+import { getTranslations } from "@/i18n/translations";
+
+const { lang = "es" } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <section class="slider-container mt-10 relative">
@@ -19,13 +23,13 @@ import GoogleIcon from "./icons/GoogleIcon.astro";
                     ))}
                 </div>
                 <div class="flex flex-col md:flex-row">
-                    <span class="mr-2 text-xs md:text-base">53 reviews on</span>
+                    <span class="mr-2 text-xs md:text-base">53 {t.customerExperiences.reviewsOn}</span>
                     <span class="w-[56.24px]"><GoogleIcon/></span>
                 </div>
             </div>
         </div>
         <button class="bg-blue-500 hover:bg-blue-400 active:bg-blue-300 text-white font-bold text-xs md:text-sm rounded-2xl transition-all h-fit">
-            <a aria-label="View Still Wild Nature Night Walk Tour on Google Maps" target="_blank" class="block px-2 md:px-5 py-2 md:py-2 rounded-2xl" href="https://www.google.com/maps/place/Still+Wild+Nature%2FNight+walk+Tour/@10.2662426,-84.9817386,13z/data=!3m1!4b1!4m3!3m2!1s0x2588265d27bf78b9:0xfaaed99520822d07!16s%2Fg%2F11ymyz0yw4!17m2!4m1!1e3!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDMzMC4wIKXMDSoASAFQAw%3D%3D" >Review us on Google</a>
+            <a aria-label="View Still Wild Nature Night Walk Tour on Google Maps" target="_blank" class="block px-2 md:px-5 py-2 md:py-2 rounded-2xl" href="https://www.google.com/maps/place/Still+Wild+Nature%2FNight+walk+Tour/@10.2662426,-84.9817386,13z/data=!3m1!4b1!4m3!3m2!1s0x2588265d27bf78b9:0xfaaed99520822d07!16s%2Fg%2F11ymyz0yw4!17m2!4m1!1e3!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDMzMC4wIKXMDSoASAFQAw%3D%3D" >{t.customerExperiences.reviewButton}</a>
         </button>
     </div>
 

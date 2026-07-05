@@ -1,24 +1,19 @@
 ---
 import Button from "./Button.astro";
+import { getTranslations } from "@/i18n/translations";
 
 const { lang = "es" } = Astro.props;
 
 const isEnglish = lang === "en";
 const basePath = isEnglish ? "/en" : "/";
+const t = getTranslations(lang);
 
-const navigation = isEnglish
-  ? [
-    { title: "Tours", path: "#tours" },
-    { title: "Why us", path: "#why-us" },
-    { title: "Customer experiences", path: "#customer-experiences" },
-    { title: "Gallery", path: "#gallery" },
-    ]
-  : [
-    { title: "Tours", path: "#tours" },
-    { title: "Por qué nosotros", path: "#why-us" },
-    { title: "Reseñas", path: "#customer-experiences" },
-    { title: "Galeria", path: "#gallery" },
-    ];
+const navigation = [
+  { title: t.nav.tours, path: "#tours" },
+  { title: t.nav.whyUs, path: "#why-us" },
+  { title: t.nav.customerExperiences, path: "#customer-experiences" },
+  { title: t.nav.gallery, path: "#gallery" },
+];
 
 const contactUrl = isEnglish
   ? "https://wa.me/50686654446?text=Hello"
@@ -72,7 +67,7 @@ const contactUrl = isEnglish
         <a
           href={isEnglish ? "/" : "/en"}
           class="flex items-center gap-2 text-white font-medium hover:bg-[#323232] px-3 py-2 rounded-md transition-all duration-300"
-          aria-label={lang === "es" ? "Switch to English" : "Cambiar a Español"}
+          aria-label={t.nav.switchLanguage}
         >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-globe w-5 h-5">
                 <circle cx="12" cy="12" r="10"></circle>
@@ -84,7 +79,7 @@ const contactUrl = isEnglish
 
         <Button variant="primary">
           <a href={contactUrl} target="_blank">
-            {isEnglish ? "Contact us" : "Contáctanos"}
+            {t.nav.contactUs}
           </a>
         </Button>
       </div>

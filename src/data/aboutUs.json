@@ -1,23 +1,42 @@
-[
+{
+  "en": [
     {
-        "id": 1,
-        "title": "Local Expertise",
-        "description":
-          "Our guide is passionate local naturalists who understand the forest beyond the surface — from hidden wildlife to the stories that make this ecosystem unique.",
-        "icon": "localExperience"
-      },
-      {
-        "id": 2,
-        "title": "Small & Meaningful Experiences",
-        "description":
-          "We keep our groups small to offer a more personal, relaxed, and immersive experience where every detail matters.",
-        "icon": "smalGroup"
-      },
-      {
-        "id": 3,
-        "title": "Nature First Approach",
-        "description":
-          "We believe in responsible tourism. Every tour is designed to protect wildlife and preserve the beauty of Monteverde for future generations.",
-        "icon": "natureCare"
-      }
-]
+      "id": 1,
+      "title": "Local Expertise",
+      "description": "Our guide is passionate local naturalists who understand the forest beyond the surface — from hidden wildlife to the stories that make this ecosystem unique.",
+      "icon": "localExperience"
+    },
+    {
+      "id": 2,
+      "title": "Small & Meaningful Experiences",
+      "description": "We keep our groups small to offer a more personal, relaxed, and immersive experience where every detail matters.",
+      "icon": "smalGroup"
+    },
+    {
+      "id": 3,
+      "title": "Nature First Approach",
+      "description": "We believe in responsible tourism. Every tour is designed to protect wildlife and preserve the beauty of Monteverde for future generations.",
+      "icon": "natureCare"
+    }
+  ],
+  "es": [
+    {
+      "id": 1,
+      "title": "Experiencia Local",
+      "description": "Nuestro guía es un naturalista local apasionado que conoce el bosque más allá de la superficie — desde la vida silvestre escondida hasta las historias que hacen único a este ecosistema.",
+      "icon": "localExperience"
+    },
+    {
+      "id": 2,
+      "title": "Experiencias Pequeñas y Significativas",
+      "description": "Mantenemos nuestros grupos pequeños para ofrecer una experiencia más personal, relajada e inmersiva donde cada detalle importa.",
+      "icon": "smalGroup"
+    },
+    {
+      "id": 3,
+      "title": "La Naturaleza Primero",
+      "description": "Creemos en el turismo responsable. Cada tour está diseñado para proteger la vida silvestre y preservar la belleza de Monteverde para las futuras generaciones.",
+      "icon": "natureCare"
+    }
+  ]
+}

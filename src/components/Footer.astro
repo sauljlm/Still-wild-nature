@@ -1,15 +1,12 @@
 ---
-const pathname = Astro.url.pathname;
-const isEnglish = pathname.startsWith("/");
+import { getTranslations } from "@/i18n/translations";
 
-const basePath = isEnglish ? "/" : "/es";
+const { lang = "es" } = Astro.props;
+const isEnglish = lang === "en";
+const t = getTranslations(lang);
 
 function getLangPath(targetLang) {
-  if (targetLang === "en") {
-    return pathname.startsWith("/en") ? pathname : "/en" + pathname;
-  } else {
-    return pathname.replace(/^\/en/, "") || "/";
-  }
+  return targetLang === "en" ? "/en" : "/";
 }
 ---
 
@@ -19,31 +16,31 @@ function getLangPath(targetLang) {
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div class="text-center md:text-left">
         <h3 class="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-[#bcbcc7]">
-          {isEnglish ? "Information" : "Información"}
+          {t.footer.information}
         </h3>
 
         <ul class="space-y-2">
           <li>
-            <a href={`${basePath}/#tours`} class="footer-link">
-              {isEnglish ? "Tours" : "Tours"}
+            <a href="#tours" class="footer-link">
+              {t.footer.tours}
             </a>
           </li>
 
           <li>
-            <a href={`${basePath}/#why-us`} class="footer-link">
-              {isEnglish ? "Why us" : "Por qué nosotros"}
+            <a href="#why-us" class="footer-link">
+              {t.footer.whyUs}
             </a>
           </li>
 
           <li>
-            <a href={`${basePath}/#customer-experiences`} class="footer-link">
-              {isEnglish ? "Customer experiences" : "Reseñas"}
+            <a href="#customer-experiences" class="footer-link">
+              {t.footer.customerExperiences}
             </a>
           </li>
 
           <li>
-            <a href={`${basePath}/#gallery`} class="footer-link">
-              {isEnglish ? "Gallery" : "Galleria"}
+            <a href="#gallery" class="footer-link">
+              {t.footer.gallery}
             </a>
           </li>
         </ul>
@@ -51,19 +48,19 @@ function getLangPath(targetLang) {
 
       <div class="text-center md:text-left">
         <h3 class="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-[#bcbcc7]">
-          {isEnglish ? "Contact" : "Contacto"}
+          {t.footer.contact}
         </h3>
 
         <ul class="space-y-2">
           <li>
             <a href="mailto:stillwildnature@gmail.com" class="footer-link">
-              {isEnglish ? "Email" : "Correo"}: stillwildnature@gmail.com
+              {t.footer.email}: stillwildnature@gmail.com
             </a>
           </li>
 
           <li>
             <a href="tel:+50686654446" class="footer-link">
-              {isEnglish ? "Phone" : "Teléfono"}: +506 8665 4446
+              {t.footer.phone}: +506 8665 4446
             </a>
           </li>
         </ul>
@@ -72,7 +69,7 @@ function getLangPath(targetLang) {
       <!-- Language -->
       <div class="text-center md:text-left">
         <h3 class="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-[#bcbcc7]">
-          {isEnglish ? "Language" : "Idioma"}
+          {t.footer.language}
         </h3>
 
         <ul class="space-y-2">
@@ -111,9 +108,7 @@ function getLangPath(targetLang) {
       </div>
 
       <p class="text-sm md:text-base text-[#9898a1] font-medium">
-        {isEnglish
-          ? "© 2026 Still Wild Nature. All rights reserved"
-          : "© 2026 Still Wild Nature. Todos los derechos reservados."}
+        {t.footer.rights}
       </p>
 
     </div>

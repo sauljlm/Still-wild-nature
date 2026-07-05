@@ -1,4 +1,5 @@
-[
+{
+  "en": [
     {
       "title": "Night Walk",
       "subtitle": "Discover Monteverde after dark",
@@ -47,4 +48,55 @@
         "Best for: First-time visitors"
       ]
     }
+  ],
+  "es": [
+    {
+      "title": "Caminata Nocturna",
+      "subtitle": "Descubre Monteverde después del anochecer",
+      "image": "/images/gallery/img3.webp",
+      "description": "Vive el bosque nuboso de una forma completamente distinta después del atardecer. Durante esta caminata nocturna guiada, un naturalista local te ayudará a descubrir la fascinante vida silvestre nocturna de Monteverde.",
+      "details": [
+        "Duración: ~2 horas",
+        "Tamaño de grupo: Grupos pequeños",
+        "Incluye: Linterna y guía naturalista",
+        "Ideal para: Amantes de la vida silvestre y visitantes primerizos"
+      ]
+    },
+    {
+      "title": "Caminata Nocturna Privada",
+      "subtitle": "Una experiencia privada con la vida silvestre",
+      "image": "/images/gallery/img3.webp",
+      "description": "Disfruta de una caminata nocturna más personal y flexible por el bosque nuboso de Monteverde con un guía dedicado exclusivamente a tu grupo.",
+      "details": [
+        "Duración: ~2 horas",
+        "Tamaño de grupo: Tour privado",
+        "Incluye: Linterna y guía naturalista privado",
+        "Ideal para: Familias, fotógrafos y parejas"
+      ]
+    },
+    {
+      "title": "Tour de Observación de Aves",
+      "subtitle": "Explora uno de los mejores destinos de aviturismo del mundo",
+      "image": "/images/gallery/img3.webp",
+      "description": "Monteverde es uno de los mejores destinos de observación de aves del mundo. Únete a un guía experimentado para buscar tucanes, colibríes, momotos y el famoso quetzal resplandeciente.",
+      "details": [
+        "Duración: ~3 horas",
+        "Mejor horario: Temprano en la mañana",
+        "Incluye: Guía de aves y telescopio de observación",
+        "Ideal para: Amantes de la naturaleza y aficionados a las aves"
+      ]
+    },
+    {
+      "title": "Caminata de Vida Silvestre en el Bosque Nuboso",
+      "subtitle": "Descubre la biodiversidad de Monteverde",
+      "image": "/images/gallery/img3.webp",
+      "description": "Explora el exuberante bosque nuboso mientras observas vida silvestre como monos, aves e insectos fascinantes, aprendiendo sobre el ecosistema de Monteverde.",
+      "details": [
+        "Duración: ~2–3 horas",
+        "Tamaño de grupo: Grupos pequeños",
+        "Incluye: Guía naturalista",
+        "Ideal para: Visitantes primerizos"
+      ]
+    }
   ]
+}

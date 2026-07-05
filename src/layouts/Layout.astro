@@ -3,10 +3,12 @@ import Nav from "@/components/Nav.astro";
 import Footer from "@/components/Footer.astro";
 import MistBackground from "@/components/MistBackground.astro";
 import KeepScrolling from "@/assets/keep-scrolling.svg"
+
+const { lang = "es" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -16,10 +18,10 @@ import KeepScrolling from "@/assets/keep-scrolling.svg"
   <body>
     <div id="wrapper">
       <MistBackground />
-      <Nav lang="en" />
+      <Nav lang={lang} />
       <div id="content">
         <slot />
-        <Footer />
+        <Footer lang={lang} />
       </div>
       <KeepScrolling
         class="fixed bottom-5 md:bottom-3 right-0 left-0 mx-auto text-white drop-shadow-2xl animate-bounce-pulse z-10"
