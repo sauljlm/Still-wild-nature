@@ -7,7 +7,7 @@ import toursByLang from "@/data/tours.json";
 import aboutUsByLang from "@/data/aboutUs.json";
 import { getTranslations } from "@/i18n/translations";
 
-const { lang = "es" } = Astro.props;
+const { lang = "en" } = Astro.props;
 const t = getTranslations(lang);
 const aboutUs = aboutUsByLang[lang] ?? aboutUsByLang.es;
 

@@ -1,12 +1,12 @@
 ---
 import { getTranslations } from "@/i18n/translations";
 
-const { lang = "es" } = Astro.props;
+const { lang = "en" } = Astro.props;
 const isEnglish = lang === "en";
 const t = getTranslations(lang);
 
 function getLangPath(targetLang) {
-  return targetLang === "en" ? "/en" : "/";
+  return targetLang === "en" ? "/" : "/es";
 }
 ---
 
