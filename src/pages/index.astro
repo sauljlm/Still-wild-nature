@@ -27,7 +27,7 @@ const { lang = "en"} = Astro.props;
   </section>
 
   <div class="relative flex flex-col items-center">
-      <section id="sobre-nosotros" class="w-[90%] xl:w-[80%] mt-24 md:mt-10 mx-auto">
+      <section id="tours" class="w-[90%] xl:w-[80%] mt-24 md:mt-10 mx-auto">
         <div class="flex flex-col justify-between mb-30 gap-6">
           <div class="tours-head w-full flex items-center flex-col">
             <h3 class="tracking-wide text-lg md:text-2xl">
@@ -52,7 +52,7 @@ const { lang = "en"} = Astro.props;
         </div>
       </section>
 
-      <section id="sobre-nosotros" class="w-[90%] xl:w-[65%] mt-24 md:mt-32 mx-auto">
+      <section id="why-us" class="w-[90%] xl:w-[65%] mt-24 md:mt-32 mx-auto">
         <div class="why-us-head flex flex-col justify-between mb-12 gap-6">
           <div class="w-full flex items-center flex-col">
             <h3 class="text-lg md:text-2xl tracking-wide">
@@ -93,14 +93,14 @@ const { lang = "en"} = Astro.props;
           </div>
         </div>
       </section>
-      <section class="w-[90%] xl:w-[65%]">
+      <section id="customer-experiences" class="w-[90%] xl:w-[65%]">
         <h2 class="text-2xl md:text-4xl mt-20 w-full text-center">
           Customer Experiences
         </h2>
         <Reviews/>
       </section>
 
-      <section class="gallery py-32 w-[90%] ">
+      <section id="gallery" class="gallery py-32 w-[90%] ">
         <Gallery />
       </section>
     </div>

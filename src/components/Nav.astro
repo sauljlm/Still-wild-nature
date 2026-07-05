@@ -8,16 +8,16 @@ const basePath = isEnglish ? "/en" : "/";
 
 const navigation = isEnglish
   ? [
-    { title: "Tours", path: "/en/#tours" },
-    { title: "Why us", path: "/en/#why-us" },
-    { title: "Customer experiences", path: "/en/#customer-experiences" },
-    { title: "Gallery", path: "/en/#gallery" },
+    { title: "Tours", path: "#tours" },
+    { title: "Why us", path: "#why-us" },
+    { title: "Customer experiences", path: "#customer-experiences" },
+    { title: "Gallery", path: "#gallery" },
     ]
   : [
-    { title: "Tours", path: "/#tours" },
-    { title: "Por qué nosotros", path: "/#why-us" },
-    { title: "Reseñas", path: "/#customer-experiences" },
-    { title: "Galeria", path: "/#gallery" },
+    { title: "Tours", path: "#tours" },
+    { title: "Por qué nosotros", path: "#why-us" },
+    { title: "Reseñas", path: "#customer-experiences" },
+    { title: "Galeria", path: "#gallery" },
     ];
 
 const contactUrl = isEnglish
@@ -25,7 +25,11 @@ const contactUrl = isEnglish
   : "https://wa.me/50686654446?text=Hola";
 ---
 
-<header class="fixed top-0 left-0 w-full h-22 bg-transparent z-50 flex justify-center">
+<!-- Invisible hover strip: lets the mouse reveal the header even while it's
+     slid off-screen, since the header's own hit area moves with its transform. -->
+<div id="nav-hover-strip" class="fixed top-0 left-0 w-full h-3 z-40"></div>
+
+<header id="site-header" class="fixed top-0 left-0 w-full h-22 bg-[#0B0F0C]/85 backdrop-blur-sm z-50 flex justify-center transition-transform duration-500 ease-in-out">
   <div class="w-full max-w px-6 md:max-w-5xl xl:max-w-[70%] flex items-center justify-between relative">
 
     <a href={basePath} class="absolute">
@@ -56,7 +60,7 @@ const contactUrl = isEnglish
           <li>
             <a
               href={item.path}
-              class="border-b-4 border-transparent px-4 md:p-0 rounded-lg md:rounded-none active:text-black md:active:text-white active:bg-white md:active:bg-transparent md:hover:border-white transition text-lg md:text-s transition-all duration-300 ease-in-out"
+              class="border-b-4 border-transparent px-4 md:p-0 rounded-lg md:rounded-none active:text-black md:active:text-white active:bg-white md:active:bg-transparent md:hover:border-white transition text-lg md:text-base transition-all duration-300 ease-in-out"
             >
               {item.title}
             </a>
@@ -89,6 +93,8 @@ const contactUrl = isEnglish
 </header>
 
 <script>
+  import { ScrollSmoother } from "gsap/ScrollSmoother";
+
   const btn = document.getElementById("menu-btn");
   const menu = document.getElementById("mobile-menu");
 
@@ -112,4 +118,69 @@ const contactUrl = isEnglish
       menu.classList.add("left-full");
     }
   });
+
+  // The page scrolls via GSAP ScrollSmoother (a transform on #content, not
+  // real window scroll). A native "#anchor" jump moves the browser's real
+  // scroll position without telling ScrollSmoother, so the two desync and
+  // everything above the target renders in the wrong place. Route in-page
+  // anchor clicks through ScrollSmoother's own scrollTo instead.
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const id = link.getAttribute("href");
+      const target = id && document.querySelector(id);
+      if (!target) return;
+
+      e.preventDefault();
+      menu?.classList.remove("left-0");
+      menu?.classList.add("left-full");
+
+      const smoother = ScrollSmoother.get();
+      if (smoother) {
+        smoother.scrollTo(target, true, "top center");
+      } else {
+        target.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      history.pushState(null, "", id);
+    });
+  });
+
+  // Auto-hide header: slides up out of view when scrolling down, slides back
+  // down when scrolling up, when the mouse hovers near the top of the page,
+  // or while the hero banner is still on screen.
+  const header = document.getElementById("site-header");
+  const hoverStrip = document.getElementById("nav-hover-strip");
+  const banner = document.querySelector(".banner-video");
+
+  let lastScrollY = window.scrollY;
+  let headerHidden = false;
+
+  const setHeaderHidden = (hidden) => {
+    if (hidden === headerHidden || !header) return;
+    headerHidden = hidden;
+    header.style.transform = hidden ? "translateY(-100%)" : "translateY(0)";
+  };
+
+  const inBanner = () => {
+    if (!banner) return window.scrollY < window.innerHeight;
+    return banner.getBoundingClientRect().bottom > 0;
+  };
+
+  window.addEventListener("scroll", () => {
+    const y = window.scrollY;
+    const delta = y - lastScrollY;
+    const mobileMenuOpen = menu?.classList.contains("left-0");
+
+    if (mobileMenuOpen || inBanner()) {
+      setHeaderHidden(false);
+    } else if (delta > 2) {
+      setHeaderHidden(true);
+    } else if (delta < -2) {
+      setHeaderHidden(false);
+    }
+
+    lastScrollY = y;
+  }, { passive: true });
+
+  header?.addEventListener("mouseenter", () => setHeaderHidden(false));
+  hoverStrip?.addEventListener("mouseenter", () => setHeaderHidden(false));
 </script>
