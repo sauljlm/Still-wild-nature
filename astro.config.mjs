@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
-const siteUrl = process.env.SITE_URL;
+const siteUrl = process.env.SITE_URL ?? 'https://still-wild-nature.netlify.app';
 
 // https://astro.build/config
 export default defineConfig({
