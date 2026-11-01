@@ -5,6 +5,65 @@ import MistBackground from "@/components/MistBackground.astro";
 import KeepScrolling from "@/assets/keep-scrolling.svg"
 
 const { lang = "en" } = Astro.props;
+const isSpanish = lang === "es";
+const seo = isSpanish
+  ? {
+      title: "Caminatas guiadas en Monteverde | Still Wild Nature",
+      description:
+        "Explora el bosque nuboso de Monteverde con caminatas nocturnas de vida silvestre, observación de aves e historia natural junto a un guía naturalista local.",
+      locale: "es_CR",
+      imageAlt: "Vida silvestre en el bosque nuboso de Monteverde",
+    }
+  : {
+      title: "Monteverde Night Wildlife Walks | Still Wild Nature",
+      description:
+        "Explore Monteverde's cloud forest on guided night wildlife walks, birdwatching tours, and natural history walks with a local naturalist. Private tours available.",
+      locale: "en_US",
+      imageAlt: "Wildlife in the Monteverde cloud forest",
+    };
+const socialImage = "/images/gallery/img1.webp";
+const siteUrl = Astro.site?.toString().replace(/\/$/, "");
+const pageUrl = siteUrl ? `${siteUrl}${isSpanish ? "/es" : "/"}` : undefined;
+
+const structuredData = siteUrl
+  ? {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": `${siteUrl}/#organization`,
+          name: "Still Wild Nature",
+          url: siteUrl,
+          logo: `${siteUrl}/images/still-wild-nature.jpg`,
+          image: `${siteUrl}${socialImage}`,
+          email: "stillwildnature@gmail.com",
+          telephone: "+50686654446",
+          areaServed: {
+            "@type": "Place",
+            name: "Monteverde, Costa Rica",
+          },
+          knowsAbout: [
+            "Monteverde cloud forest",
+            "Night wildlife walks",
+            "Birdwatching",
+            "Natural history walks",
+          ],
+          sameAs: [
+            "https://www.instagram.com/still_wild_nature/",
+            "https://www.google.com/maps/place/Still+Wild+Nature%2FNight+walk+Tour/@10.2662426,-84.9817386,13z/data=!3m1!4b1!4m3!3m2!1s0x2588265d27bf78b9:0xfaaed99520822d07!16s%2Fg%2F11ymyz0yw4",
+          ],
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${siteUrl}/#website`,
+          name: "Still Wild Nature",
+          url: siteUrl,
+          inLanguage: ["en", "es"],
+          publisher: { "@id": `${siteUrl}/#organization` },
+        },
+      ],
+    }
+  : undefined;
 ---
 
 <!doctype html>
@@ -12,8 +71,36 @@ const { lang = "en" } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/images/still-wild-nature.jpg" />
-    <title>Still wild nature</title>
+    <link rel="icon" type="image/jpeg" href="/images/still-wild-nature.jpg" />
+    <link rel="apple-touch-icon" href="/images/still-wild-nature.jpg" />
+    <meta name="theme-color" content="#0B0F0C" />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Still Wild Nature" />
+    <meta property="og:locale" content={seo.locale} />
+    <meta property="og:locale:alternate" content={isSpanish ? "en_US" : "es_CR"} />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    {pageUrl && <meta property="og:url" content={pageUrl} />}
+    {siteUrl && <meta property="og:image" content={`${siteUrl}${socialImage}`} />}
+    <meta property="og:image:alt" content={seo.imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+    {siteUrl && <meta name="twitter:image" content={`${siteUrl}${socialImage}`} />}
+    {pageUrl && <link rel="canonical" href={pageUrl} />}
+    {siteUrl && (
+      <>
+        <link rel="alternate" hreflang="en" href={`${siteUrl}/`} />
+        <link rel="alternate" hreflang="es" href={`${siteUrl}/es`} />
+        <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+      </>
+    )}
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, "\\u003c")} />
+    )}
   </head>
   <body>
     <div id="wrapper">

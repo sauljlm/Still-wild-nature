@@ -10,7 +10,9 @@ export const translations = {
     },
     hero: {
       title: "Still Wild Nature",
-      subtitle: "Experiencia de Caminata Nocturna en Monteverde",
+      subtitle: "Ve más allá de la vida silvestre. Comprende el bosque.",
+      subsubtitle:
+        "Experiencias de naturaleza con guías locales en Monteverde, Costa Rica.",
     },
     tours: {
       label: "Tours",
@@ -59,7 +61,9 @@ export const translations = {
     },
     hero: {
       title: "Still Wild Nature",
-      subtitle: "Night Walk Experience in Monteverde",
+      subtitle: "See More Than Wildlife. Understand the Forest.",
+      subsubtitle:
+        "Locally guided nature experiences in Monteverde, Costa Rica.",
     },
     tours: {
       label: "Tours",

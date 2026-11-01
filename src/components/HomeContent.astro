@@ -47,9 +47,12 @@ const tours = (toursByLang[lang] ?? toursByLang.es).map((tour) => ({
         ))}
       </h1>
       <div class="mx-auto mt-5 mb-4 h-1 w-16 rounded-full bg-[#B4D990] shadow-[0_0_18px_rgba(180,217,144,0.45)] md:mx-0 md:w-20"></div>
-      <h2 id="hero-subtitle" class="mx-auto max-w-2xl text-base leading-relaxed font-medium text-[#F2E6C8] drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)] sm:text-lg md:mx-0 md:text-2xl">
+      <h2 id="hero-subtitle" class="mx-auto max-w-3xl text-lg leading-relaxed font-semibold text-[#F2E6C8] drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)] sm:text-xl md:mx-0 md:text-3xl">
         {t.hero.subtitle}
       </h2>
+      <p id="hero-subsubtitle" class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed font-medium text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] sm:text-base md:mx-0 md:text-lg">
+        {t.hero.subsubtitle}
+      </p>
     </div>
   </div>
 </section>
@@ -198,18 +201,22 @@ const tours = (toursByLang[lang] ?? toursByLang.es).map((tour) => ({
 
   const title = document.querySelector("#hero-title");
   const subtitle = document.querySelector("#hero-subtitle");
+  const subsubtitle = document.querySelector("#hero-subsubtitle");
   const toursHead = document.querySelector(".tours-head");
   const whyUsHead = document.querySelector(".why-us-head");
 
   let titleSplit: SplitText | undefined;
   let subtitleSplit: SplitText | undefined;
+  let subsubtitleSplit: SplitText | undefined;
 
   function initAnimation() {
     titleSplit?.revert();
     subtitleSplit?.revert();
+    subsubtitleSplit?.revert();
 
     titleSplit = new SplitText(title, { type: "words" });
     subtitleSplit = new SplitText(subtitle, { type: "words" });
+    subsubtitleSplit = new SplitText(subsubtitle, { type: "words" });
 
     const tl = gsap.timeline({ ease: "power2.out" });
 
@@ -229,7 +236,13 @@ const tours = (toursByLang[lang] ?? toursByLang.es).map((tour) => ({
       y: 20,
       autoAlpha: 0,
       stagger: 0.05
-    }, "-=0.2");
+    }, "-=0.2")
+    .from(subsubtitleSplit.words, {
+      duration: 0.25,
+      y: 12,
+      autoAlpha: 0,
+      stagger: 0.025
+    }, "-=0.1");
   }
 
   initAnimation();
