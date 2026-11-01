@@ -1,0 +1,141 @@
+---
+const { hero } = Astro.props;
+const photos = [6, 3, 9, 5, 13, 7, 10, 15, 16, 4, 11, 2];
+---
+
+<section class="banner-video hero-intro relative">
+  <div class="bg-video" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto" tabindex="-1">
+      <source src="/videos/forest.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="hero-gallery" aria-hidden="true">
+    <div class="hero-mosaic">
+      {photos.map((photo, index) => (
+        <div class="hero-photo" style={`--photo-index: ${index}`}>
+          <img src={`/images/gallery/img${photo}.webp`} alt="" loading="eager" decoding="async" fetchpriority={index === 0 ? "high" : "auto"} />
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-copy-shell absolute inset-0 flex items-center justify-center">
+    <div class="hero-copy w-[90%] text-center md:w-[82%] md:text-left xl:w-[70%]">
+      <h1 id="hero-title" class="text-[clamp(3rem,12vw,5rem)] leading-[0.96] font-extrabold tracking-[-0.045em] drop-shadow-[0_3px_18px_rgba(0,0,0,0.55)] md:text-7xl lg:text-8xl">
+        {hero.title.split(" ").map((word, index, words) => (
+          <span class={index === 1 ? "text-[#B4D990]" : "text-white"}>
+            {word}{index < words.length - 1 ? " " : ""}
+          </span>
+        ))}
+      </h1>
+      <div class="hero-rule mx-auto mt-5 mb-4 h-1 w-16 rounded-full bg-[#B4D990] shadow-[0_0_18px_rgba(180,217,144,0.45)] md:mx-0 md:w-20"></div>
+      <h2 id="hero-subtitle" class="mx-auto max-w-3xl text-lg leading-relaxed font-semibold text-[#F2E6C8] drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)] sm:text-xl md:mx-0 md:text-3xl">
+        {hero.subtitle}
+      </h2>
+      <p id="hero-subsubtitle" class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed font-medium text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] sm:text-base md:mx-0 md:text-lg">
+        {hero.subsubtitle}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .banner-video { height: 100svh; min-height: 620px; isolation: isolate; overflow: hidden; background: #0b0f0c; }
+  .bg-video, .hero-gallery, .hero-shade { position: absolute; inset: 0; }
+  .bg-video video { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; }
+  .hero-video-ready .bg-video video { opacity: 1; }
+  .hero-gallery { z-index: 1; overflow: hidden; background: #0b0f0c; }
+  .hero-mosaic { position: absolute; inset: -20%; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); gap: clamp(10px, 1.4vw, 24px); transform: rotate(-8deg) scale(1.06); }
+  .hero-photo { min-height: 0; overflow: hidden; border-radius: 16px; background: #17241c; box-shadow: 0 16px 40px #0005; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; animation: photo-drift 12s ease-in-out infinite alternate; animation-delay: calc(var(--photo-index) * -1.3s); }
+  .hero-photo:nth-child(even) img { animation-direction: alternate-reverse; }
+  .hero-shade { z-index: 2; pointer-events: none; background: linear-gradient(90deg, #04090794 0%, #04090742 62%, #04090724 100%), linear-gradient(0deg, #0409076b 0%, transparent 58%); }
+  .hero-intro .hero-shade { background: radial-gradient(ellipse at center, #040907c4 0%, #04090780 48%, #04090740 100%); }
+  .hero-copy-shell { z-index: 3; padding-block: 100px 48px; }
+  .hero-intro .hero-copy { text-align: center; }
+  .hero-intro .hero-copy > * { margin-inline: auto; }
+  @keyframes photo-drift { from { transform: scale(1.08) translate3d(-1%, -1%, 0); } to { transform: scale(1.18) translate3d(1%, 2%, 0); } }
+  @media (max-width: 767px) {
+    .banner-video { min-height: 540px; }
+    .hero-mosaic { inset: -12% -30%; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 1fr); gap: 12px; }
+    .hero-photo { border-radius: 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-photo img { animation: none; }
+    .bg-video video { transition: none; }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { Flip } from "gsap/Flip";
+  import { SplitText } from "gsap/SplitText";
+
+  gsap.registerPlugin(Flip, SplitText);
+
+  const hero = document.querySelector<HTMLElement>(".banner-video");
+  const video = hero?.querySelector<HTMLVideoElement>("video");
+  const gallery = hero?.querySelector<HTMLElement>(".hero-gallery");
+
+  if (hero && video && gallery) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const started = performance.now();
+    let textMoved = false;
+    let videoRevealed = false;
+    let revealScheduled = false;
+
+    function moveText() {
+      if (textMoved) return;
+      textMoved = true;
+      const splits = Array.from(hero!.querySelectorAll<HTMLElement>("h1, h2, p"))
+        .map((element) => new SplitText(element, { type: "words" }));
+      const targets = [...splits.flatMap((split) => split.words), hero!.querySelector(".hero-rule")!];
+      const state = Flip.getState(targets);
+      hero!.classList.remove("hero-intro");
+      Flip.from(state, {
+        duration: reducedMotion ? 0 : 1.35,
+        ease: "power3.inOut",
+        onComplete: () => splits.forEach((split) => split.revert()),
+      });
+    }
+
+    function revealVideo() {
+      if (videoRevealed) return;
+      videoRevealed = true;
+      window.clearTimeout(fallbackTimer);
+      hero!.classList.add("hero-video-ready");
+      moveText();
+      gsap.to(gallery!.querySelectorAll(".hero-photo"), {
+        opacity: 0,
+        scale: reducedMotion ? 1 : 0.88,
+        y: reducedMotion ? 0 : (index) => index % 2 === 0 ? -45 : 45,
+        duration: reducedMotion ? 0 : 0.95,
+        stagger: reducedMotion ? 0 : { each: 0.035, from: "center" },
+        ease: "power2.inOut",
+      });
+      gsap.to(gallery, {
+        backgroundColor: "transparent",
+        duration: reducedMotion ? 0 : 1.2,
+        onComplete: () => { gallery!.remove(); },
+      });
+    }
+
+    function onPlayback() {
+      if (revealScheduled || video!.paused) return;
+      revealScheduled = true;
+      // Reveal after the first decoded frame, including when the video was cached.
+      const ready = () => window.setTimeout(revealVideo, Math.max(0, 700 - (performance.now() - started)));
+      if ("requestVideoFrameCallback" in video!) video!.requestVideoFrameCallback(ready);
+      else ready();
+    }
+
+    // Keep the gallery as a usable hero if autoplay is blocked or the video fails.
+    const fallbackTimer = window.setTimeout(moveText, 10000);
+    video.addEventListener("playing", onPlayback);
+    video.addEventListener("error", moveText, { once: true });
+    video.querySelector("source")?.addEventListener("error", moveText, { once: true });
+    video.muted = true;
+    video.play().then(onPlayback).catch(moveText);
+    if (!video.paused && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) onPlayback();
+  }
+</script>

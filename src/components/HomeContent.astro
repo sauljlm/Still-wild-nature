@@ -1,5 +1,6 @@
 ---
 import Gallery from "@/components/Gallery.astro";
+import Hero from "@/components/Hero.astro";
 import TourCard from "@/components/TourCard.astro";
 import AboutUsCard from "@/components/AboutUsCard.astro";
 import Reviews from "@/components/Reviews.astro";
@@ -30,32 +31,7 @@ const tours = (toursByLang[lang] ?? toursByLang.es).map((tour) => ({
 }));
 ---
 
-<section class="banner-video relative">
-  <div class="bg-video">
-    <video autoplay muted loop playsinline preload="auto" poster="/images/gallery/img6.webp">
-      <source src="/videos/forest.mp4" type="video/mp4" />
-      Tu navegador no soporta el elemento de video.
-    </video>
-  </div>
-  <div class="absolute top-0 z-2 flex h-full w-full flex-col items-center justify-center">
-    <div class="w-[90%] text-center md:w-[82%] md:text-left xl:w-[70%]">
-      <h1 id="hero-title" class="text-[clamp(3rem,12vw,5rem)] leading-[0.96] font-extrabold tracking-[-0.045em] drop-shadow-[0_3px_18px_rgba(0,0,0,0.55)] md:text-7xl lg:text-8xl">
-        {t.hero.title.split(" ").map((word, index, words) => (
-          <span class={index === 1 ? "text-[#B4D990]" : "text-white"}>
-            {word}{index < words.length - 1 ? " " : ""}
-          </span>
-        ))}
-      </h1>
-      <div class="mx-auto mt-5 mb-4 h-1 w-16 rounded-full bg-[#B4D990] shadow-[0_0_18px_rgba(180,217,144,0.45)] md:mx-0 md:w-20"></div>
-      <h2 id="hero-subtitle" class="mx-auto max-w-3xl text-lg leading-relaxed font-semibold text-[#F2E6C8] drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)] sm:text-xl md:mx-0 md:text-3xl">
-        {t.hero.subtitle}
-      </h2>
-      <p id="hero-subsubtitle" class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed font-medium text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] sm:text-base md:mx-0 md:text-lg">
-        {t.hero.subsubtitle}
-      </p>
-    </div>
-  </div>
-</section>
+<Hero hero={t.hero} />
 
 <div class="relative flex flex-col items-center">
     <section id="tours" class="w-[90%] xl:w-[80%] mt-24 md:mt-10 mx-auto">
@@ -134,31 +110,6 @@ const tours = (toursByLang[lang] ?? toursByLang.es).map((tour) => ({
   </div>
 
 <style>
-  .bg-video {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 92vh;
-    object-fit: cover;
-    z-index: 1;
-  }
-  .bg-video video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .bg-video::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(90deg, rgba(4, 9, 7, 0.58) 0%, rgba(4, 9, 7, 0.26) 62%, rgba(4, 9, 7, 0.14) 100%),
-      linear-gradient(0deg, rgba(4, 9, 7, 0.42) 0%, transparent 58%);
-    z-index: 1;
-  }
-
   .guide-wrapper {
     position: relative;
     height: 500px;
@@ -176,9 +127,6 @@ const tours = (toursByLang[lang] ?? toursByLang.es).map((tour) => ({
       height: 700px;
     }
 
-    .bg-video {
-      height: 100vh;
-    }
   }
 
   .guide {
@@ -195,57 +143,11 @@ const tours = (toursByLang[lang] ?? toursByLang.es).map((tour) => ({
 <script>
   import { gsap } from "gsap"
   import { ScrollTrigger } from "gsap/ScrollTrigger"
-  import { SplitText } from "gsap/SplitText"
 
-  gsap.registerPlugin(ScrollTrigger, SplitText);
+  gsap.registerPlugin(ScrollTrigger);
 
-  const title = document.querySelector("#hero-title");
-  const subtitle = document.querySelector("#hero-subtitle");
-  const subsubtitle = document.querySelector("#hero-subsubtitle");
   const toursHead = document.querySelector(".tours-head");
   const whyUsHead = document.querySelector(".why-us-head");
-
-  let titleSplit: SplitText | undefined;
-  let subtitleSplit: SplitText | undefined;
-  let subsubtitleSplit: SplitText | undefined;
-
-  function initAnimation() {
-    titleSplit?.revert();
-    subtitleSplit?.revert();
-    subsubtitleSplit?.revert();
-
-    titleSplit = new SplitText(title, { type: "words" });
-    subtitleSplit = new SplitText(subtitle, { type: "words" });
-    subsubtitleSplit = new SplitText(subsubtitle, { type: "words" });
-
-    const tl = gsap.timeline({ ease: "power2.out" });
-
-    tl.from(titleSplit.words, {
-      duration: 0.3,
-      y: 35,
-      stagger: 0.1
-    })
-    .from(titleSplit.words, {
-      duration: 0.3,
-      autoAlpha: 0,
-      stagger: 0.1,
-      filter: "blur(3px)"
-    }, 0.2)
-    .from(subtitleSplit.words, {
-      duration: 0.3,
-      y: 20,
-      autoAlpha: 0,
-      stagger: 0.05
-    }, "-=0.2")
-    .from(subsubtitleSplit.words, {
-      duration: 0.25,
-      y: 12,
-      autoAlpha: 0,
-      stagger: 0.025
-    }, "-=0.1");
-  }
-
-  initAnimation();
 
   window.addEventListener("load", () => {
 
