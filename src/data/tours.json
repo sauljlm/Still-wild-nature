@@ -1,101 +1,93 @@
 {
   "en": [
     {
-      "title": "Night Walk",
-      "subtitle": "Discover Monteverde after dark",
+      "title": "Night Wildlife Walk",
       "image": "/images/gallery/img3.webp",
-      "description": "Experience the cloud forest in a completely different way after sunset. During this guided night walk, a local naturalist will help you discover the fascinating nocturnal wildlife of Monteverde.",
+      "description": "Step into the cloud forest after sunset and discover a world that often goes unnoticed during the day. Guided by a local naturalist, explore the forest in search of frogs, snakes, insects, sleeping birds, and other fascinating wildlife.\nMore than just spotting animals, this experience reveals the remarkable adaptations, behaviors, and ecological relationships that make tropical forests so extraordinary. With flashlights provided and a small-group atmosphere, every walk becomes an opportunity to slow down, observe closely, and discover something new.\nEvery night is different, and each encounter is a reminder of how much life remains hidden in the forest.",
       "details": [
         "Duration: ~2 hours",
         "Group size: Small groups",
-        "Includes: Flashlight and naturalist guide",
-        "Best for: Wildlife lovers and first-time visitors"
+        "Includes: Flashlights and a local naturalist guide",
+        "Best for: Curious wildlife lovers and nature enthusiasts"
       ]
     },
     {
-      "title": "Private Night Walk",
-      "subtitle": "A private wildlife experience",
+      "title": "Private Night Wildlife Walk",
       "image": "/images/gallery/img3.webp",
-      "description": "Enjoy a more personal and flexible night walk through the Monteverde cloud forest with a dedicated guide focused entirely on your group.",
+      "description": "Explore Monteverde after dark on a private night walk designed entirely around your group. With your own naturalist guide, you can take your time, follow your curiosity, and enjoy a more personal encounter with the forest.\nWhether you are fascinated by reptiles and amphibians, passionate about insects, interested in mammals, or simply curious about tropical wildlife, the experience adapts to your interests and pace.\nYour guide will help you discover hidden wildlife, explain the fascinating details behind each encounter, and assist with wildlife photography using a spotting scope when conditions allow.\nIdeal for couples, families, photographers, and curious nature lovers seeking a more personal and flexible experience.",
       "details": [
         "Duration: ~2 hours",
         "Group size: Private tour",
-        "Includes: Flashlight and private naturalist guide",
-        "Best for: Families, photographers, and couples"
+        "Includes: Flashlight, private naturalist guide, and spotting-scope photography assistance when conditions allow",
+        "Ideal for: Couples, families, photographers, and curious nature lovers"
       ]
     },
     {
-      "title": "Bird Watching Tour",
-      "subtitle": "Explore one of the world’s top birding destinations",
+      "title": "Birdwatching & Natural History Walk",
       "image": "/images/gallery/img3.webp",
-      "description": "Monteverde is one of the best birdwatching destinations in the world. Join an experienced guide to search for toucans, hummingbirds, motmots and the famous resplendent quetzal.",
+      "description": "Discover the extraordinary birdlife of Monteverde on a guided morning walk through its diverse forest habitats. Accompanied by a local naturalist, search for colorful toucans, hummingbirds, motmots, trogons, and the magnificent Resplendent Quetzal, along with many other resident and migratory species.\nLearn to identify birds through their calls, plumage, behavior, and ecological roles while exploring the forest at a pace that allows time for careful observation.\nA spotting scope is included to help you appreciate fine details and enjoy better views of birds perched high in the canopy.\nWhether you are an experienced birder or discovering birdwatching for the first time, the walk can be adapted to your interests, experience, and photography goals.",
       "details": [
         "Duration: ~3 hours",
-        "Best time: Early morning",
-        "Includes: Birding guide and spotting scope",
-        "Best for: Nature lovers and bird enthusiasts"
+        "Best time: Morning",
+        "Includes: Local naturalist guide and spotting scope",
+        "Ideal for: Birders of all experience levels and wildlife photographers"
       ]
     },
     {
-      "title": "Cloud Forest Wildlife Walk",
-      "subtitle": "Discover the biodiversity of Monteverde",
+      "title": "Cloud Forest Natural History Walk",
       "image": "/images/gallery/img3.webp",
-      "description": "Explore the lush cloud forest while spotting wildlife such as monkeys, birds, and fascinating insects while learning about the ecosystem of Monteverde.",
+      "description": "Discover the cloud forest beyond its beautiful scenery on a guided natural history walk through Monteverde. Explore the intricate relationships between plants, insects, birds, mammals, and the many other organisms that make this ecosystem so unique.\nLook closely at the details that are easy to overlook: camouflage, unusual plant adaptations, insect behavior, interactions between species, and the ecological processes that sustain the forest.\nRather than focusing only on large or easily spotted animals, this experience invites you to slow down, ask questions, and understand how the forest works as a living system.\nPerfect for curious travelers, families, photographers, and nature enthusiasts who want to develop a deeper appreciation of tropical biodiversity.",
       "details": [
         "Duration: ~2–3 hours",
         "Group size: Small groups",
-        "Includes: Naturalist guide",
-        "Best for: First-time visitors"
+        "Includes: Local naturalist guide",
+        "Ideal for: Curious travelers, families, photographers, and nature enthusiasts"
       ]
     }
   ],
   "es": [
     {
-      "title": "Caminata Nocturna",
-      "subtitle": "Descubre Monteverde después del anochecer",
+      "title": "Caminata Nocturna de Vida Silvestre",
       "image": "/images/gallery/img3.webp",
-      "description": "Vive el bosque nuboso de una forma completamente distinta después del atardecer. Durante esta caminata nocturna guiada, un naturalista local te ayudará a descubrir la fascinante vida silvestre nocturna de Monteverde.",
+      "description": "Adéntrate en el bosque nuboso después del atardecer y descubre un mundo que suele pasar inadvertido durante el día. Guiado por un naturalista local, explora el bosque en busca de ranas, serpientes, insectos, aves dormidas y otros animales fascinantes.\nMás que observar animales, esta experiencia revela las extraordinarias adaptaciones, conductas y relaciones ecológicas que hacen tan especiales a los bosques tropicales. Con linternas incluidas y en un grupo pequeño, cada caminata invita a bajar el ritmo, observar con atención y descubrir algo nuevo.\nCada noche es distinta, y cada encuentro recuerda cuánta vida permanece oculta en el bosque.",
       "details": [
         "Duración: ~2 horas",
         "Tamaño de grupo: Grupos pequeños",
-        "Incluye: Linterna y guía naturalista",
-        "Ideal para: Amantes de la vida silvestre y visitantes primerizos"
+        "Incluye: Linternas y guía naturalista local",
+        "Ideal para: Amantes curiosos de la vida silvestre y la naturaleza"
       ]
     },
     {
-      "title": "Caminata Nocturna Privada",
-      "subtitle": "Una experiencia privada con la vida silvestre",
+      "title": "Caminata Nocturna Privada de Vida Silvestre",
       "image": "/images/gallery/img3.webp",
-      "description": "Disfruta de una caminata nocturna más personal y flexible por el bosque nuboso de Monteverde con un guía dedicado exclusivamente a tu grupo.",
+      "description": "Explora Monteverde después del anochecer en una caminata nocturna privada, diseñada por completo para tu grupo. Con tu propio guía naturalista, podrás tomarte tu tiempo, seguir tu curiosidad y disfrutar de un encuentro más personal con el bosque.\nYa sea que te fascinen los reptiles y anfibios, te apasionen los insectos, te interesen los mamíferos o simplemente sientas curiosidad por la vida silvestre tropical, la experiencia se adapta a tus intereses y ritmo.\nTu guía te ayudará a descubrir animales ocultos, explicará los detalles fascinantes de cada encuentro y te apoyará con la fotografía de vida silvestre usando un telescopio cuando las condiciones lo permitan.\nIdeal para parejas, familias, fotógrafos y amantes curiosos de la naturaleza que buscan una experiencia más personal y flexible.",
       "details": [
         "Duración: ~2 horas",
         "Tamaño de grupo: Tour privado",
-        "Incluye: Linterna y guía naturalista privado",
-        "Ideal para: Familias, fotógrafos y parejas"
+        "Incluye: Linterna, guía naturalista privado y apoyo fotográfico con telescopio cuando las condiciones lo permitan",
+        "Ideal para: Parejas, familias, fotógrafos y amantes curiosos de la naturaleza"
       ]
     },
     {
-      "title": "Tour de Observación de Aves",
-      "subtitle": "Explora uno de los mejores destinos de aviturismo del mundo",
+      "title": "Caminata de Observación de Aves e Historia Natural",
       "image": "/images/gallery/img3.webp",
-      "description": "Monteverde es uno de los mejores destinos de observación de aves del mundo. Únete a un guía experimentado para buscar tucanes, colibríes, momotos y el famoso quetzal resplandeciente.",
+      "description": "Descubre la extraordinaria avifauna de Monteverde en una caminata matutina guiada por sus diversos hábitats boscosos. Acompañado por un naturalista local, busca tucanes coloridos, colibríes, momotos, trogones y el magnífico quetzal resplandeciente, además de muchas otras especies residentes y migratorias.\nAprende a identificar las aves por sus cantos, plumaje, comportamiento y función ecológica mientras recorres el bosque a un ritmo que permite observar con atención.\nSe incluye un telescopio para apreciar los detalles y ver mejor las aves posadas en lo alto del dosel.\nTanto si tienes experiencia observando aves como si apenas estás descubriendo esta actividad, la caminata se adapta a tus intereses, experiencia y objetivos fotográficos.",
       "details": [
         "Duración: ~3 horas",
-        "Mejor horario: Temprano en la mañana",
-        "Incluye: Guía de aves y telescopio de observación",
-        "Ideal para: Amantes de la naturaleza y aficionados a las aves"
+        "Mejor horario: Por la mañana",
+        "Incluye: Guía naturalista local y telescopio",
+        "Ideal para: Observadores de aves de todos los niveles y fotógrafos de naturaleza"
       ]
     },
     {
-      "title": "Caminata de Vida Silvestre en el Bosque Nuboso",
-      "subtitle": "Descubre la biodiversidad de Monteverde",
+      "title": "Caminata de Historia Natural por el Bosque Nuboso",
       "image": "/images/gallery/img3.webp",
-      "description": "Explora el exuberante bosque nuboso mientras observas vida silvestre como monos, aves e insectos fascinantes, aprendiendo sobre el ecosistema de Monteverde.",
+      "description": "Descubre el bosque nuboso más allá de sus hermosos paisajes en una caminata guiada de historia natural por Monteverde. Explora las complejas relaciones entre plantas, insectos, aves, mamíferos y muchos otros organismos que hacen único a este ecosistema.\nObserva de cerca detalles que suelen pasar inadvertidos: el camuflaje, las adaptaciones inusuales de las plantas, el comportamiento de los insectos, las interacciones entre especies y los procesos ecológicos que sostienen el bosque.\nEn vez de enfocarse únicamente en animales grandes o fáciles de encontrar, esta experiencia invita a bajar el ritmo, hacer preguntas y comprender cómo funciona el bosque como un sistema vivo.\nPerfecta para viajeros curiosos, familias, fotógrafos y amantes de la naturaleza que quieran apreciar más profundamente la biodiversidad tropical.",
       "details": [
         "Duración: ~2–3 horas",
         "Tamaño de grupo: Grupos pequeños",
-        "Incluye: Guía naturalista",
-        "Ideal para: Visitantes primerizos"
+        "Incluye: Guía naturalista local",
+        "Ideal para: Viajeros curiosos, familias, fotógrafos y amantes de la naturaleza"
       ]
     }
   ]

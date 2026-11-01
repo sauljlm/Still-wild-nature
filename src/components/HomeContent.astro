@@ -37,10 +37,19 @@ const tours = (toursByLang[lang] ?? toursByLang.es).map((tour) => ({
       Tu navegador no soporta el elemento de video.
     </video>
   </div>
-  <div class="absolute top-0 w-full h-full z-2 flex flex-col justify-center items-center">
-    <div class="w-[90%] xl:w-[70%]">
-      <h1 id="hero-title" class="text-3xl md:text-6xl text-bold">{t.hero.title}</h1>
-      <h2 id="hero-subtitle" class="text-l md:text-xl">{t.hero.subtitle}</h2>
+  <div class="absolute top-0 z-2 flex h-full w-full flex-col items-center justify-center">
+    <div class="w-[90%] text-center md:w-[82%] md:text-left xl:w-[70%]">
+      <h1 id="hero-title" class="text-[clamp(3rem,12vw,5rem)] leading-[0.96] font-extrabold tracking-[-0.045em] drop-shadow-[0_3px_18px_rgba(0,0,0,0.55)] md:text-7xl lg:text-8xl">
+        {t.hero.title.split(" ").map((word, index, words) => (
+          <span class={index === 1 ? "text-[#B4D990]" : "text-white"}>
+            {word}{index < words.length - 1 ? " " : ""}
+          </span>
+        ))}
+      </h1>
+      <div class="mx-auto mt-5 mb-4 h-1 w-16 rounded-full bg-[#B4D990] shadow-[0_0_18px_rgba(180,217,144,0.45)] md:mx-0 md:w-20"></div>
+      <h2 id="hero-subtitle" class="mx-auto max-w-2xl text-base leading-relaxed font-medium text-[#F2E6C8] drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)] sm:text-lg md:mx-0 md:text-2xl">
+        {t.hero.subtitle}
+      </h2>
     </div>
   </div>
 </section>
@@ -49,11 +58,11 @@ const tours = (toursByLang[lang] ?? toursByLang.es).map((tour) => ({
     <section id="tours" class="w-[90%] xl:w-[80%] mt-24 md:mt-10 mx-auto">
       <div class="flex flex-col justify-between mb-30 gap-6">
         <div class="tours-head w-full flex items-center flex-col">
-          <h3 class="tracking-wide text-lg md:text-2xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#B4D990] sm:text-sm">
             {t.tours.label}
-          </h3>
+          </p>
 
-          <h2 class="text-2xl md:text-4xl font-bold mt-2 text-center">
+          <h2 class="mt-3 max-w-4xl text-center text-3xl leading-tight font-bold tracking-tight text-[#F2E6C8] sm:text-4xl lg:text-5xl">
             {t.tours.heading}
           </h2>
         </div>
@@ -73,10 +82,10 @@ const tours = (toursByLang[lang] ?? toursByLang.es).map((tour) => ({
     <section id="why-us" class="w-[90%] xl:w-[65%] mt-24 md:mt-32 mx-auto">
       <div class="why-us-head flex flex-col justify-between mb-12 gap-6">
         <div class="w-full flex items-center flex-col">
-          <h3 class="text-lg md:text-2xl tracking-wide">
+          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-[#B4D990] sm:text-sm">
             {t.whyUs.label}
-          </h3>
-          <h2 class="text-2xl md:text-4xl font-bold mt-2 text-center">
+          </p>
+          <h2 class="mt-3 max-w-4xl text-center text-3xl leading-tight font-bold tracking-tight text-[#F2E6C8] sm:text-4xl lg:text-5xl">
             {t.whyUs.heading}
           </h2>
         </div>
@@ -94,9 +103,9 @@ const tours = (toursByLang[lang] ?? toursByLang.es).map((tour) => ({
 
       <div class="flex flex-col md:flex-row items-center mt-12 md:mt-20 gap-10 md:gap-0">
         <div class="w-full md:w-1/2 md:pr-16 order-2 md:order-1">
-          <h4 class="text-2xl md:text-3xl font-bold text-[#4E7C59]">
+          <h3 class="text-3xl leading-tight font-bold tracking-tight text-[#B4D990] sm:text-4xl">
             {t.whyUs.guideName}
-          </h4>
+          </h3>
           <p class="pt-6 md:pt-10 text-base md:text-lg">
             {t.whyUs.guideBio1}
           </p>
@@ -110,7 +119,7 @@ const tours = (toursByLang[lang] ?? toursByLang.es).map((tour) => ({
       </div>
     </section>
     <section id="customer-experiences" class="w-[90%] xl:w-[65%]">
-      <h2 class="text-2xl md:text-4xl mt-20 w-full text-center">
+      <h2 class="mt-20 w-full text-center text-3xl leading-tight font-bold tracking-tight text-[#F2E6C8] sm:text-4xl lg:text-5xl">
         {t.customerExperiences.heading}
       </h2>
       <Reviews lang={lang} />
@@ -141,7 +150,9 @@ const tours = (toursByLang[lang] ?? toursByLang.es).map((tour) => ({
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background:
+      linear-gradient(90deg, rgba(4, 9, 7, 0.58) 0%, rgba(4, 9, 7, 0.26) 62%, rgba(4, 9, 7, 0.14) 100%),
+      linear-gradient(0deg, rgba(4, 9, 7, 0.42) 0%, transparent 58%);
     z-index: 1;
   }
 

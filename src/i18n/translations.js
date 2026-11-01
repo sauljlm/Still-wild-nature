@@ -16,6 +16,8 @@ export const translations = {
       label: "Tours",
       heading: "Experiencias únicas diseñadas para cada tipo de viajero",
       details: "Detalles",
+      seeMore: "Ver más",
+      seeLess: "Ver menos",
       reserve: "Reservar",
     },
     whyUs: {
@@ -63,6 +65,8 @@ export const translations = {
       label: "Tours",
       heading: "Unique experiences designed for every type of traveler",
       details: "Details",
+      seeMore: "See more",
+      seeLess: "See less",
       reserve: "Reserve",
     },
     whyUs: {
